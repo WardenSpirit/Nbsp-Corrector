@@ -10,8 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// The command has been defined in the package.json file. The commandId parameter must match.
 	const commandId = 'nbspcorrector.helloWorld';
-	const command = correct;
-	registerCommand(commandId, command, context);
+	registerCommand(commandId, correct, context);
 }
 
 export function deactivate() {}
