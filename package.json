@@ -14,12 +14,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "nbspcorrector.helloWorld",
-        "title": "Hello, boy!"
-      },
+        "command": "nbspcorrector.correct",
+        "title": "Oprav nezlomitelné mezery"
+      }
+    ],
+    "keybindings": [
       {
-        "command": "nbspcorrector.timeAndDate",
-        "title": "Time And Date"
+        "command": "nbspcorrector.correct",
+        "key": "ctrl+alt+n+b",
+        "mac": "cmd+alt+n+b",
+        "when": "editorTextFocus"
       }
     ],
     "configuration": {
@@ -28,8 +32,20 @@
         "nbspcorrector.zápisNezlomitelnýchMezer": {
           "order": 0,
           "type": "string",
-          "enum": ["&nbsp;", "&#160;", "&#xA0;", "&#xa0;", "\" \""],
-          "enumItemLabels": ["", "", "", "", "Znak nezlomitelné mezery (alt + 0160)"],
+          "enum": [
+            "&nbsp;",
+            "&#160;",
+            "&#xA0;",
+            "&#xa0;",
+            "\" \""
+          ],
+          "enumItemLabels": [
+            "",
+            "",
+            "",
+            "",
+            "Znak nezlomitelné mezery (alt + 0160)"
+          ],
           "default": "&nbsp;",
           "description": "Vyber zápis používaný pro nezlomitelné mezery."
         },
