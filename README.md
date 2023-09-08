@@ -1,4 +1,4 @@
-# helloworld README, oujé
+# helloworld README
 
 Klíčová slova: *HTML*, *\&nbsp*, *zalamování českého textu*, *nezlomitelné mezery*
 
