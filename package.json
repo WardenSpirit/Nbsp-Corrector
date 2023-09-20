@@ -55,7 +55,7 @@
           "default": true,
           "description": "Ignoruj nezlomitelné mezery obsažené v upravovaném textu."
         },
-        "nbspcorrector.pokročilé.kolemMatematickýchOperátorů": {
+        "nbspcorrector.pokročilé.zalamováníKolemMatematickýchOperátorů": {
           "order": 2,
           "type": "string",
           "enum": [
@@ -68,19 +68,19 @@
             "Nezlomitelné mezery nevkládej za matematickými operátory, vkládej je před ně."
           ]
         },
-        "nbspcorrector.pokročilé.předPomlčkamiAZnakyMinus": {
+        "nbspcorrector.pokročilé.zalamováníPředPomlčkamiAZnakyMinus": {
           "order": 3,
           "type": "boolean",
           "default": true,
-          "description": "Zapne zalamování před pomlčkami a~znaky minus. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
+          "description": "Povolí zalamování před pomlčkami a~znaky minus. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
         },
-        "nbspcorrector.pokročilé.předLomítky": {
+        "nbspcorrector.pokročilé.zalamováníPředLomítky": {
           "order": 4,
           "type": "boolean",
           "default": true,
-          "description": "Zapne zalamování před lomítky. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
+          "description": "Povolí zalamování před lomítky. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
         },
-        "nbspcorrector.pokročilé.zaŘímskýmiČísly": {
+        "nbspcorrector.pokročilé.opatrnostZaMožnýmiŘímskýmiČísly": {
           "order": 5,
           "type": "boolean",
           "default": false,
@@ -92,20 +92,26 @@
           "default": true,
           "description": "Nevkládej nezlomitelné mezery do sekvencí podobných kalendářním datům s podezřele vysokým číslem dne či měsíce."
         },
-        "nbspcorrector.pokročilé.titulyAHodnosti": {
+        "nbspcorrector.pokročilé.zalamováníMeziMěsícemARokem": {
           "order": 7,
           "type": "boolean",
-          "default": true,
-          "description": "Vkládej nezlomitelné mezery za tituly/hodnosti."
+          "default": false,
+          "description": "Povolí zalamování mezi měsícem a rokem v číselných zápisech dat. Jestliže text není zarovnán do bloku, není to vhodné."
         },
-        "nbspcorrector.pokročilé.matematickéZávorky": {
+        "nbspcorrector.pokročilé.zalamováníZaTitulyAHodnostmi": {
           "order": 8,
           "type": "boolean",
-          "default": true,
-          "description": "Vkládej nezlomitelné mezery do matematických závorek."
+          "default": false,
+          "description": "Povolí zalamování za tituly/hodnostmi. Zapínej jen pro předcházení false positives."
+        },
+        "nbspcorrector.pokročilé.zalamováníVMatematickýchZávorkách": {
+          "order": 9,
+          "type": "boolean",
+          "default": false,
+          "description": "Povol zalamování matematicky vypadajícího výrazu v závorkách."
         },
         "nbspcorrector.pokročilé.vlastníRegulárníVýrazy": {
-          "order": 9,
+          "order": 10,
           "type": "array",
           "default": [],
           "description": "Napiš vlastní regulární výraz pro vložení nezlomitelných mezer."

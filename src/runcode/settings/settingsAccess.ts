@@ -5,26 +5,29 @@ export function loadNBSPNotation(): string {
     return configuration.get('zápisNezlomitelnýchMezer') ?? DEFAULT_NOTATION
 }
 
-export function loadRegexpsConfiguration(): {
+export type ConfigData = {
     rewrite: boolean,
-    aroundMath: string,
+    wrapAroundMath: string,
     dashes: boolean,
     slashes: boolean,
-    roman: boolean,
+    romanCaution: boolean,
     datesValidation: boolean,
-    degrees: boolean,
-    mathParentheses: boolean,
-    custom: SearchExp[]
-} {
+    monthYearSeparation: boolean,
+    wrapAfterDegrees: boolean,
+    wrapInMathParentheses: boolean,
+    custom: SearchExp[]}
+
+export function loadRegexpsConfiguration(): ConfigData {
     return {
         rewrite: configuration.get('přepisPůvodníchNezlomitelnýchMezer') ?? DEFAULT_REWRITE,
-        aroundMath: configuration.get('pokročilé.kolemMatematickýchOperátorů') ?? DEFAULT_AROUND_MATH,
-        dashes: configuration.get('pokročilé.předPomlčkamiAZnakyMinus') ?? DEFAULT_DASHES,
-        slashes: configuration.get('pokročilé.předLomítky') ?? DEFAULT_SLASHES,
-        roman: configuration.get('pokročilé.zaŘímskýmiČísly') ?? DEFAULT_ROMAN,
+        wrapAroundMath: configuration.get('pokročilé.zalamováníKolemMatematickýchOperátorů') ?? DEFAULT_WRAP_AROUND_MATH,
+        dashes: configuration.get('pokročilé.zalamováníPředPomlčkamiAZnakyMinus') ?? DEFAULT_DASHES,
+        slashes: configuration.get('pokročilé.zalamováníPředLomítky') ?? DEFAULT_SLASHES,
+        romanCaution: configuration.get('pokročilé.opatrnostZaMožnýmiŘímskýmiČísly') ?? DEFAULT_ROMAN_CAUTION,
         datesValidation: configuration.get('pokročilé.validaceKalendářníchDat') ?? DEFAULT_DATES_VALIDATION,
-        degrees: configuration.get('pokročilé.titulyAHodnosti') ?? DEFAULT_DEGREES,
-        mathParentheses: configuration.get('pokročilé.matematickéZávorky') ?? DEFAULT_MATH_PARENTHESES,
+        monthYearSeparation: configuration.get('pokročilé.zalamováníMeziMěsícemARokem') ?? DEFAULT_MONTH_YEAR_SEPARATION,
+        wrapAfterDegrees: configuration.get('pokročilé.zalamováníZaTitulyAHodnostmi') ?? DEFAULT_WRAP_AFTER_DEGREES,
+        wrapInMathParentheses: configuration.get('pokročilé.zalamováníVMatematickýchZávorkách') ?? DEFAULT_WRAP_IN_MATH_PARENTHESES,
         custom: configuration.get('pokročilé.vlastníRegulárníVýrazy') ?? DEFAULT_CUSTOM
     }
 }
@@ -33,11 +36,12 @@ const configuration = vscode.workspace.getConfiguration("nbspcorrector")
 const DEFAULT_NOTATION: string = "&nbsp;"
 
 const DEFAULT_REWRITE: boolean = true
-const DEFAULT_AROUND_MATH: string = "před"
+const DEFAULT_WRAP_AROUND_MATH: string = "před"
 const DEFAULT_DASHES: boolean = true
 const DEFAULT_SLASHES: boolean = true
-const DEFAULT_ROMAN: boolean = false
+const DEFAULT_ROMAN_CAUTION: boolean = false
 const DEFAULT_DATES_VALIDATION: boolean = true
-const DEFAULT_DEGREES: boolean = true
-const DEFAULT_MATH_PARENTHESES: boolean = true
+const DEFAULT_MONTH_YEAR_SEPARATION: boolean = false
+const DEFAULT_WRAP_AFTER_DEGREES: boolean = false
+const DEFAULT_WRAP_IN_MATH_PARENTHESES: boolean = false
 const DEFAULT_CUSTOM: SearchExp[] = []
