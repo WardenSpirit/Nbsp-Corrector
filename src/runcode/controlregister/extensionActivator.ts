@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { registerCommand as registerCommand } from './commandRegister';
-import { correct } from '../spacescorrector/correctionController';
+import { correctActiveDocument } from '../spacescorrector/correctionController';
 
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// The command has been defined in the package.json file. The commandId parameter must match.
 	const commandId = 'nbspcorrector.helloWorld';
-	registerCommand(commandId, correct, context);
+	registerCommand(commandId, correctActiveDocument, context);
 }
 
 export function deactivate() {}
