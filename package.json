@@ -64,21 +64,21 @@
           ],
           "default": "před",
           "enumDescriptions": [
-            "Nezlomitelné mezery nevkládej před matematickými operátory.",
-            "Nezlomitelné mezery nevkládej za matematickými operátory."
+            "Nezlomitelné mezery nevkládej před matematickými operátory, vkládej je za ně.",
+            "Nezlomitelné mezery nevkládej za matematickými operátory, vkládej je před ně."
           ]
         },
         "nbspcorrector.pokročilé.předPomlčkamiAZnakyMinus": {
           "order": 3,
           "type": "boolean",
           "default": true,
-          "description": "Vypne zalamování před pomlčkami a~znaky minus, když je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování před matematickými operátory."
+          "description": "Zapne zalamování před pomlčkami a~znaky minus. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
         },
         "nbspcorrector.pokročilé.předLomítky": {
           "order": 4,
           "type": "boolean",
           "default": true,
-          "description": "Vypne zalamování před lomítky, když je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování před matematickými operátory."
+          "description": "Zapne zalamování před lomítky. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
         },
         "nbspcorrector.pokročilé.zaŘímskýmiČísly": {
           "order": 5,
@@ -98,8 +98,14 @@
           "default": true,
           "description": "Vkládej nezlomitelné mezery za tituly/hodnosti."
         },
-        "nbspcorrector.pokročilé.vlastníRegulárníVýrazy": {
+        "nbspcorrector.pokročilé.matematickéZávorky": {
           "order": 8,
+          "type": "boolean",
+          "default": true,
+          "description": "Vkládej nezlomitelné mezery do matematických závorek."
+        },
+        "nbspcorrector.pokročilé.vlastníRegulárníVýrazy": {
+          "order": 9,
           "type": "array",
           "default": [],
           "description": "Napiš vlastní regulární výraz pro vložení nezlomitelných mezer."
