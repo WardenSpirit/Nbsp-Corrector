@@ -3,3 +3,6 @@ dist
 node_modules
 .vscode-test/
 *.vsix
+.vscodeignore
+example.html
+vsc-extension-quickstart.md
