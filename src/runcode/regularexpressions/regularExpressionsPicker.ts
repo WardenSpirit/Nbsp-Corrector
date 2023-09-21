@@ -1,15 +1,14 @@
 import { ConfigData, loadNBSPNotation, loadRegexpsConfiguration } from "../settings/settingsAccess"
-import { SearchExp } from '../regularexpressions/SearchExp'
 import * as regexpsDB from './regularExpressionsDB'
 
-export function loadRegexps(): SearchExp[] {
-    const regexps: SearchExp[] = []
+export function loadRegexps(): RegExp[] {
+    const regexps: RegExp[] = []
     addAlwaysOnRegexps(regexps)
     addRegexpsAccordingToConfiguration(regexps, loadRegexpsConfiguration())
     return regexps
 }
 
-function addAlwaysOnRegexps(regexps: SearchExp[]) {
+function addAlwaysOnRegexps(regexps: RegExp[]) {
     regexps.push(...regexpsDB.NUMBER_SEGMENTS)
     regexps.push(...regexpsDB.RATIOS)
     regexps.push(...regexpsDB.ANGLES_FT_IN)
@@ -19,7 +18,7 @@ function addAlwaysOnRegexps(regexps: SearchExp[]) {
     regexps.push(...regexpsDB.PREPOSITIONS_CONJUNCTIONS)
 }
 
-function addRegexpsAccordingToConfiguration(regexps: SearchExp[], regexpsConfiguration: ConfigData) {
+function addRegexpsAccordingToConfiguration(regexps: RegExp[], regexpsConfiguration: ConfigData) {
     if (regexpsConfiguration.wrapAroundMath === "před") {       //zalamuje se před MO, NM vkládána za MO
         regexps.push(...regexpsDB.NBSP_AFTER_MATH)
         if (!regexpsConfiguration.dashes) regexps.push(...regexpsDB.NBSP_BEFORE_DASHES)

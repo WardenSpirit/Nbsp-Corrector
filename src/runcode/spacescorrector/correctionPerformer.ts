@@ -1,5 +1,4 @@
 import { Change } from "./Change"
-import { SearchExp } from '../regularexpressions/SearchExp'
 import * as settingsAccess from "../settings/settingsAccess"
 import * as regularExpressions from "../regularexpressions/regularExpressionsPicker"
 
@@ -12,13 +11,13 @@ export function generateCorrections(correctedText: string): Change[] {
 
 const NBSPNotation = settingsAccess.loadNBSPNotation()
 
-function applyRegexp(searchexp: SearchExp, correctedText: string, changes: Change[]) {
+function applyRegexp(searchexp: RegExp, correctedText: string, changes: Change[]) {
     findRegexpPositionsInText(searchexp, correctedText).forEach(index => {
         changes.push([index, NBSPNotation])
     })
 }
 
-function findRegexpPositionsInText(regexp: SearchExp, correctedText: string): number[] {
+function findRegexpPositionsInText(regexp: RegExp, correctedText: string): number[] {
     const patternIndices: number[] = [];
     let match
     //todo
