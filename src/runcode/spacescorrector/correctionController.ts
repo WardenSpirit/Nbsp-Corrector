@@ -2,7 +2,7 @@ import * as documentAccess from "../documentaccess/documentAccess"
 import { alarm } from "../messager/messager"
 import * as documentValidator from "./documentValidator"
 import * as DOMRecurser from "./DOMRecurser"
-import { generateCorrections } from "./correctionPerformer"
+import { createAllCorrections } from "./correctionPerformer"
 import { Change } from "./Change"
 
 export function correctActiveDocument() {
@@ -23,14 +23,15 @@ export function correctActiveDocument() {
 
     DOMRecurser.forChainedTextParts(parsedDocument.documentElement, noteCorrections)
 
-    changes.forEach(change => documentAccess.rewriteCharacter(change[0], change[1]))
+    changes.forEach(change => documentAccess.rewriteSection(change[0], change[1], change[2]))
 }
 
 const changes: Change[] = []
 
 function noteCorrections(correctedText: string, startingIndex: number) {
-    generateCorrections(correctedText).forEach(change => {
+    createAllCorrections(correctedText).forEach(change => {
         change[1] += startingIndex
+        change[2] += startingIndex
         changes.push(change)
     })
 }

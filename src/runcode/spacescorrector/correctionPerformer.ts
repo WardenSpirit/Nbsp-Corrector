@@ -2,29 +2,29 @@ import { Change } from "./Change"
 import * as settingsAccess from "../settings/settingsAccess"
 import * as regularExpressions from "../regularexpressions/regularExpressionsPicker"
 
-export function generateCorrections(correctedText: string): Change[] {
+export function createAllCorrections(correctedText: string): Change[] {
     const changes: Change[] = []
     const regexps = regularExpressions.loadRegexps()
-    regexps.forEach(regexp => applyRegexp(regexp, correctedText, changes))
+    regexps.forEach(regexp => changes.push(...createRegexpCorrections(regexp, correctedText)))
     return changes
 }
 
 const NBSPNotation = settingsAccess.loadNBSPNotation()
 
-function applyRegexp(searchexp: RegExp, correctedText: string, changes: Change[]) {
-    findRegexpPositionsInText(searchexp, correctedText).forEach(index => {
-        changes.push([index, NBSPNotation])
-    })
+function createRegexpCorrections(regexp: RegExp, correctedText: string): Change[] {
+    const changes: Change[] = []
+    let match
+    while ((match = regexp.exec(correctedText)) !== null) {
+        changes.push(createCorrectionFromMatch(match, regexp))
+    }
+    return changes
 }
 
-function findRegexpPositionsInText(regexp: RegExp, correctedText: string): number[] {
-    const patternIndices: number[] = [];
-    let match
-    //todo
-    /*while ((match = regexp.exec(correctedText)) !== null) {
-        patternIndices.push(match.index);
-        regexp.lastIndex = match.index + 1
-    }*/
-    
-    return patternIndices;
+function createCorrectionFromMatch(match: RegExpExecArray, regexp: RegExp): Change {
+    const startIndex: number = match.index!
+    const endIndex: number = regexp.lastIndex
+    const replaced: string = match.input.substring(startIndex, endIndex)
+    const replacement: string = replaced.replace(" ", NBSPNotation)
+    regexp.lastIndex = startIndex + 1
+    return [replacement, startIndex, endIndex];
 }

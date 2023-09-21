@@ -1,1 +1,1 @@
-export type Change = [number, string];
+export type Change = [replacement: string, startIndex: number, endIndex:number];
