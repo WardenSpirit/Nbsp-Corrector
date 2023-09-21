@@ -54,7 +54,7 @@ function getActiveDocument(): vscode.TextDocument {
     return document
 }
 
-function rewriteSection(newSection: string, startIndex: number, endIndex: number) {
+export function rewriteSection(newSection: string, startIndex: number, endIndex: number) {
     const activeDocument = getActiveDocument();
     const oldText = activeDocument.getText()
     if (startIndex < 0 || startIndex >= oldText.length || endIndex < 0 || endIndex > oldText.length) {
