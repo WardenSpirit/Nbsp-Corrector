@@ -9,8 +9,6 @@ export function createAllCorrections(correctedText: string): Change[] {
     return changes
 }
 
-const NBSPNotation = settingsAccess.loadNBSPNotation()
-
 function createRegexpCorrections(regexp: RegExp, correctedText: string): Change[] {
     const changes: Change[] = []
     let match
@@ -19,6 +17,8 @@ function createRegexpCorrections(regexp: RegExp, correctedText: string): Change[
     }
     return changes
 }
+
+const NBSPNotation = settingsAccess.loadNBSPNotation()
 
 function createCorrectionFromMatch(match: RegExpExecArray, regexp: RegExp): Change {
     const startIndex: number = match.index!
