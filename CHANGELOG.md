@@ -1,9 +1,16 @@
 # Change Log
 
-All notable changes to the "helloworld" extension will be documented in this file.
+Zde budou dokumentovány všechny významné změny tohoto rozšíření.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+Formát pramení z [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-- Initial release
+- Možnost nechat přepisovat stávající entitní mezery
+
+## [0.0.1] - 2023-09-21
+
+### Added
+
+- Oprava mezer pomocí příkazu
+- Oprava mezer pomocí klávesové zkratky (ctrl + alt + n + b)

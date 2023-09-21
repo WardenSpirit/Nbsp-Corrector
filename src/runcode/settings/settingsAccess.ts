@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import { SearchExp } from '../regularexpressions/SearchExp'
 
 export function loadNBSPNotation(): string {
     return configuration.get('zápisNezlomitelnýchMezer') ?? DEFAULT_NOTATION
@@ -15,7 +14,7 @@ export type ConfigData = {
     monthYearSeparation: boolean,
     wrapAfterDegrees: boolean,
     wrapInMathParentheses: boolean,
-    custom: SearchExp[]}
+    custom: RegExp[]}
 
 export function loadRegexpsConfiguration(): ConfigData {
     return {
@@ -44,4 +43,4 @@ const DEFAULT_DATES_VALIDATION: boolean = true
 const DEFAULT_MONTH_YEAR_SEPARATION: boolean = false
 const DEFAULT_WRAP_AFTER_DEGREES: boolean = false
 const DEFAULT_WRAP_IN_MATH_PARENTHESES: boolean = false
-const DEFAULT_CUSTOM: SearchExp[] = []
+const DEFAULT_CUSTOM: RegExp[] = []

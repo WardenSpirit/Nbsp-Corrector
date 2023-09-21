@@ -9,7 +9,6 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -21,8 +20,8 @@
     "keybindings": [
       {
         "command": "nbspcorrector.correct",
-        "key": "ctrl+alt+n+b",
-        "mac": "cmd+alt+n+b",
+        "key": "ctrl+alt+n ctrl+alt+b",
+        "mac": "cmd+alt+n cmd+alt+b",
         "when": "editorTextFocus"
       }
     ],
