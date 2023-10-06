@@ -3,9 +3,12 @@ import * as vscode from 'vscode';
 export function loadNBSPNotation(): string {
     return configuration.get('zápisNezlomitelnýchMezer') ?? DEFAULT_NOTATION
 }
+    
+export function loadRewriteActive(): boolean {
+    return configuration.get('přepisPůvodníchNezlomitelnýchMezer') ?? DEFAULT_REWRITE
+}
 
 export type ConfigData = {
-    rewrite: boolean,
     wrapAroundMath: string,
     dashes: boolean,
     slashes: boolean,
@@ -14,13 +17,13 @@ export type ConfigData = {
     monthYearSeparation: boolean,
     wrapAfterDegrees: boolean,
     wrapInMathParentheses: boolean,
-    custom: RegExp[]}
+    custom: RegExp[]
+}
 
 export function loadRegexpsConfiguration(): ConfigData {
     return {
-        rewrite: configuration.get('přepisPůvodníchNezlomitelnýchMezer') ?? DEFAULT_REWRITE,
         wrapAroundMath: configuration.get('pokročilé.zalamováníKolemMatematickýchOperátorů') ?? DEFAULT_WRAP_AROUND_MATH,
-        dashes: configuration.get('pokročilé.zalamováníPředPomlčkamiAZnakyMinus') ?? DEFAULT_DASHES,
+        dashes: configuration.get('pokročilé.zalamováníPředSpojovníkyAZnakyMinus') ?? DEFAULT_MINUSES,
         slashes: configuration.get('pokročilé.zalamováníPředLomítky') ?? DEFAULT_SLASHES,
         romanCaution: configuration.get('pokročilé.opatrnostZaMožnýmiŘímskýmiČísly') ?? DEFAULT_ROMAN_CAUTION,
         datesValidation: configuration.get('pokročilé.validaceKalendářníchDat') ?? DEFAULT_DATES_VALIDATION,
@@ -36,7 +39,7 @@ const DEFAULT_NOTATION: string = "&nbsp;"
 
 const DEFAULT_REWRITE: boolean = true
 const DEFAULT_WRAP_AROUND_MATH: string = "před"
-const DEFAULT_DASHES: boolean = true
+const DEFAULT_MINUSES: boolean = true
 const DEFAULT_SLASHES: boolean = true
 const DEFAULT_ROMAN_CAUTION: boolean = false
 const DEFAULT_DATES_VALIDATION: boolean = true

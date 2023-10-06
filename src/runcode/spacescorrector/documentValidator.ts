@@ -3,6 +3,7 @@ export const ERROR_MESSAGE = "Dokument nevyhovuje požadavkům. Soubor musí mí
 
 export function canBeCzechHtmlDocument(parsedDocument: Document): boolean {
     const documentElement: HTMLElement = parsedDocument.documentElement
+    
     if (!isParsedOK(documentElement)) return false
 
     const lang = documentElement.getAttribute("lang")

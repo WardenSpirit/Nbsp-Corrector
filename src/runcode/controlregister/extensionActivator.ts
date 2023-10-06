@@ -6,7 +6,7 @@ import { correctActiveDocument } from '../spacescorrector/correctionController';
 
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	console.log('Extension "Korektor nezlomitelných mezer" is now active!');
+	console.log('Extension "Korektor nezlomitelných mezer" has just been activated!');
 
 	// The command has been defined in the package.json file. The commandId parameter must match.
 	const commandId = 'nbspcorrector.correct';
