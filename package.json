@@ -1,6 +1,6 @@
 {
   "name": "nbspcorrector",
-  "displayName": "Korektor nezlomitelných mezer",
+  "displayName": "nbspcorrector",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -26,7 +26,7 @@
       }
     ],
     "configuration": {
-      "title": "Korektor nezlomitelmných mezer",
+      "title": "nbspcorrector",
       "properties": {
         "nbspcorrector.zápisNezlomitelnýchMezer": {
           "order": 0,
