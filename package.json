@@ -67,11 +67,11 @@
             "Nezlomitelné mezery nevkládej za matematickými operátory, vkládej je před ně."
           ]
         },
-        "nbspcorrector.pokročilé.zalamováníPředPomlčkamiAZnakyMinus": {
+        "nbspcorrector.pokročilé.zalamováníPředSpojovníkyAZnakyMinus": {
           "order": 3,
           "type": "boolean",
           "default": true,
-          "description": "Povolí zalamování před pomlčkami a~znaky minus. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
+          "description": "Povolí zalamování před spojovníky a~znaky minus. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
         },
         "nbspcorrector.pokročilé.zalamováníPředLomítky": {
           "order": 4,
