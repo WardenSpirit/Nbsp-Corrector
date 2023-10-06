@@ -21,23 +21,26 @@ function addAlwaysOnRegexps(regexps: RegExp[]) {
 function addRegexpsAccordingToConfiguration(regexps: RegExp[], regexpsConfiguration: ConfigData) {
     if (regexpsConfiguration.wrapAroundMath === "před") {       //zalamuje se před MO, NM vkládána za MO
         regexps.push(...regexpsDB.NBSP_AFTER_MATH)
-        if (!regexpsConfiguration.dashes) regexps.push(...regexpsDB.NBSP_BEFORE_DASHES)
+        if (!regexpsConfiguration.dashes) regexps.push(...regexpsDB.NBSP_BEFORE_MINUSES)
         if (!regexpsConfiguration.slashes) regexps.push(...regexpsDB.NBSP_BEFORE_SLASHES)
     }
     else {      //zalamuje se za MO, NM vkládána před MO
         regexps.push(...regexpsDB.NBSP_BEFORE_MATH)
-        regexps.push(...regexpsDB.NBSP_BEFORE_DASHES)
+        regexps.push(...regexpsDB.NBSP_BEFORE_MINUSES)
         regexps.push(...regexpsDB.NBSP_BEFORE_SLASHES)
     }
+    
     if (regexpsConfiguration.romanCaution) regexps.push(...regexpsDB.IV_NOT_NUMERALS)
+    
     if (regexpsConfiguration.datesValidation) {
-        if (regexpsConfiguration.monthYearSeparation) regexps.push(...regexpsDB.VALIDATED_SEPARATED_CALENDAR_DATES)
-        else regexps.push(...regexpsDB.VALIDATED_JOINED_CALENDAR_DATES)
+        regexps.push(...regexpsDB.VALIDATED_SEPARATED_CALENDAR_DATES)
+        if (!regexpsConfiguration.monthYearSeparation) regexps.push(...regexpsDB.VALIDATED_JOINED_CALENDAR_DATES)
     }
     else {
-        if (regexpsConfiguration.monthYearSeparation) regexps.push(...regexpsDB.ALL_SEPARATED_CALENDAR_DATES)
-        else regexps.push(...regexpsDB.ALL_JOINED_CALENDAR_DATES)
+        regexps.push(...regexpsDB.ALL_SEPARATED_CALENDAR_DATES)
+        if (!regexpsConfiguration.monthYearSeparation) regexps.push(...regexpsDB.ALL_JOINED_CALENDAR_DATES)
     }
+
     if (regexpsConfiguration.wrapAfterDegrees) regexps.push(...regexpsDB.DEGREES)
     if (regexpsConfiguration.wrapInMathParentheses) regexps.push(...regexpsDB.MATH_PARENTHESES)
     regexps.push(...(regexpsConfiguration.custom))
