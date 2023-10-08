@@ -1,7 +1,7 @@
 import * as documentAccess from "../documentaccess/documentAccess"
 import { alarm } from "../messager/messager"
 import * as documentValidator from "./documentValidator"
-import * as DOMRecurser from "./DOMRecurser"
+import * as DOMRecurser from "./textExtractor"
 import { createAllCorrections } from "./correctionPerformer"
 import { Change } from "../documentaccess/Change"
 import { loadRewriteActive } from "../settings/settingsAccess"
@@ -10,35 +10,36 @@ const { JSDOM } = jsdom
 const DOMParser = new JSDOM().window.DOMParser
 
 export function correctActiveDocument() {
-    let htmlText: string
+    let HTMLText: string
     try {
-        htmlText = documentAccess.readAdapted()
+        HTMLText = documentAccess.read()
     } catch (error) {
         if (error instanceof Error) alarm(error.message)
         return
     }
 
-    const parsedDocument = new DOMParser().parseFromString(htmlText, 'text/html');
+    const parsedDocument = new DOMParser().parseFromString(HTMLText, 'text/html')
 
-    if (!documentValidator.canBeCzechHtmlDocument(parsedDocument)) {
+    if (!documentValidator.canBeCzechValid(parsedDocument)) {
         alarm(documentValidator.ERROR_MESSAGE)
         return
     }
 
-    const correctionFunction = loadRewriteActive()? noteCorrectionsRewriting : noteCorrections
-    const doctypeHTMLLength = htmlText.indexOf(parsedDocument.documentElement.innerHTML)
-    console.log(`doctypeHTMLLength: ${doctypeHTMLLength}`)
-    DOMRecurser.forChainedTextParts(parsedDocument.documentElement, correctionFunction, doctypeHTMLLength)
+    const textParts: [text: string, offset: number][] = DOMRecurser.extractTexts(HTMLText)
 
-    console.log(`info: ${changes.length} change(s): "${changes}"`)
+    const correction = loadRewriteActive() ? noteCorrectionsRewriting : noteCorrections
+    textParts.forEach(textPart => {
+        correction(...textPart)
+    })
 
-    changes.forEach(change => documentAccess.rewriteSection(change[0], change[1], change[2]))
+    info(`info: ${changes.length} change(s): "${changes}"`)
+    documentAccess.applyChanges(changes)
 }
 
 const changes: Change[] = []
 
 function noteCorrectionsRewriting(correctedText: string, startingIndex: number) {
-    noteCorrections(correctedText.replace(/(?: |&nbsp;?|(?:&#160|&#xA0)(?:;|(?=[^0-9A-F])))/gi, " "), startingIndex)
+    noteCorrections(correctedText.replace(/(?: |&nbsp;?|(?:&#160|&#xA0)(?:;|(?=[^0-9A-F])))/gi, " "), startingIndex)        //tohle asi nebude stačit, jelikož se přitom ztrácí data o indexech (staří zaznamenat nalezené zápisy mezer a posléze je přidat z5)
 }
 
 function noteCorrections(correctedText: string, startingIndex: number) {

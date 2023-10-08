@@ -25,17 +25,17 @@ export class CharacterTooLongError extends Error {
     }
 }
 
-export function readAdapted(): string {
-    console.log(`The document's length is ${getActiveDocument().getText().length}`)
-    return adaptLinesToUnableReader(getActiveDocument().getText())
+export function read(): string {
+    console.log(`Debug: The document's length is ${getActiveDocument().getText().length}`)
+    return getActiveDocument().getText()
 }
-
+/*
 export function rewriteCharacter(index: number, newChar: string) {
     if (newChar.length != 1) {
         throw new CharacterTooLongError();
     }
-    return rewriteSection(newChar, index, index + 1);
-}
+    return rewriteSection([newChar, index, index + 1], );
+}*/
 
 function getActiveDocument(): vscode.TextDocument {
     const activeEditor = getActiveEditor();
@@ -50,34 +50,40 @@ function getActiveEditor(): vscode.TextEditor {
     return activeEditor;
 }
 
-function getActiveDocumentFromEditor(activeEditor: vscode.TextEditor): vscode.TextDocument {
+function getDocumentFromEditor(activeEditor: vscode.TextEditor): vscode.TextDocument {
     const document = activeEditor.document
     if (document.languageId !== "html") throw new InvalidDocumentTypeError()
     return document
 }
 
-function adaptLinesToUnableReader(htmlText: string): string {
-    const numberOfRN: number = htmlText.match(/\r\n/g)? htmlText.match(/\r\n/g)!.length : 0
-    console.log(`number of \\r\\n: ${numberOfRN}`)
-    const returnValue = htmlText.replace(/\r\n/g, "\n\n")
-    console.log(`after adapting lines: \n${returnValue}`)
-    return returnValue
+export function applyChanges(changes: Change[]) {
+    const activeEditor = getActiveEditor()
+    const activeDocument = getDocumentFromEditor(activeEditor)
+
+    checkRanges(changes, activeDocument)
+
+    activeEditor.edit((editBuilder) => {
+        let change: Change | undefined
+        while (change = changes.pop()) {
+            rewriteSection(change, activeDocument, editBuilder)
+        }
+    })
 }
 
-export function rewriteSection(newSection: string, startIndex: number, endIndex: number) {
-    console.log(`rewriteSection("${newSection}", ${startIndex}, ${endIndex}) invoked`)
-    const activeDocument = getActiveDocument()
-    const oldText = activeDocument.getText()
-    if (startIndex < 0 || startIndex >= oldText.length || endIndex < 0 || endIndex > oldText.length) {
-        throw new RangeError("Neplatný rozsah indexů.");
-    }
-
-    const range = new vscode.Range(
-        activeDocument.positionAt(startIndex),
-        activeDocument.positionAt(endIndex)
-    )
-
-    getActiveEditor().edit((editBuilder) => {
-        editBuilder.replace(range, newSection)
+function checkRanges(changes: Change[], target: vscode.TextDocument) {
+    const textLength = target.getText().length
+    changes.forEach(change => {
+        if (change[1] < 0 || change[1] >= textLength || change[2] < 0 || change[2] > textLength) {
+            throw new RangeError("Neplatný rozsah indexů.")
+        }
     })
+}
+
+function rewriteSection(change: Change, target: vscode.TextDocument, editBuilder: vscode.TextEditorEdit) {
+    console.log(`rewriteSection("${change[0]}", ${change[1]}, ${change[2]}) invoked`)
+    const range = new vscode.Range(
+        target.positionAt(change[1]),
+        target.positionAt(change[2])
+    )
+    editBuilder.replace(range, change[0])
 }
