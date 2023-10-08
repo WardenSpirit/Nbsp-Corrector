@@ -1,5 +1,5 @@
 import * as documentAccess from "../documentaccess/documentAccess"
-import { alarm } from "../messager/messager"
+import { info, alarm } from "../messager/messager"
 import * as documentValidator from "./documentValidator"
 import * as DOMRecurser from "./textExtractor"
 import { createAllCorrections } from "./correctionPerformer"
