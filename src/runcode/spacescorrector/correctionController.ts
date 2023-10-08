@@ -3,9 +3,9 @@ import { alarm } from "../messager/messager"
 import * as documentValidator from "./documentValidator"
 import * as DOMRecurser from "./DOMRecurser"
 import { createAllCorrections } from "./correctionPerformer"
-import { Change } from "./Change"
-import jsdom = require("jsdom")
+import { Change } from "../documentaccess/Change"
 import { loadRewriteActive } from "../settings/settingsAccess"
+import jsdom = require("jsdom")
 const { JSDOM } = jsdom
 const DOMParser = new JSDOM().window.DOMParser
 

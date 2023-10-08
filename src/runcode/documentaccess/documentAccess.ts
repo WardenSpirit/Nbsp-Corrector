@@ -1,4 +1,5 @@
-import * as vscode from 'vscode';
+import * as vscode from 'vscode'
+import { Change } from "./Change"
 
 export class NoActiveEditorError extends Error {
     private static readonly MESSAGE = "Aktivní okno editoru nenalezeno!"

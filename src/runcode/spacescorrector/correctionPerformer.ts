@@ -1,4 +1,4 @@
-import { Change } from "./Change"
+import { Change } from "../documentaccess/Change"
 import * as settingsAccess from "../settings/settingsAccess"
 import * as regularExpressions from "../regularexpressions/regularExpressionsPicker"
 
