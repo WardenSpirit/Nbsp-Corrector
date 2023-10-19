@@ -6,9 +6,10 @@ const DOMParser = new JSDOM().window.DOMParser
 export function extractTexts(HTMLText: string): [textPart: string, offset: number][] {
 
   const [noNewLinesText, newLinesIndeces] = extractNewLines(HTMLText)
-  const body = new DOMParser().parseFromString(noNewLinesText, 'text/html').body;
+  const document: Document = new DOMParser().parseFromString(noNewLinesText, 'text/html')
+  const body = document.body
 
-  const offset = noNewLinesText.indexOf(body.innerHTML)
+  const offset = getOffsetOfBody(noNewLinesText)
   const textParts: [textPart: string, offset: number][] = getTextParts(body, offset)
   offsetWithNewLines(textParts, newLinesIndeces)
   return textParts
@@ -23,6 +24,10 @@ function extractNewLines(HTMLText: string): [string, number[]] {
   }), newLinesIndeces]
 }
 
+function getOffsetOfBody(noNewLinesText: string): number {
+  const outerBodyOffset = noNewLinesText.indexOf('<body')
+  return outerBodyOffset + noNewLinesText.substring(outerBodyOffset).indexOf('>') + 1
+}
 
 function getTextParts(
   element: Element,

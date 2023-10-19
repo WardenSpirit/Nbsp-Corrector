@@ -1,5 +1,5 @@
 
-export const ERROR_MESSAGE = "Dokument nevyhovuje požadavkům. Soubor musí mít příponu '.html' a obsahovat validní kód HTML. Atribut 'lang' značky '<html>' nesmí značit jiný jazyk než \"cs\"."
+export const ERROR_MESSAGE = "Soubor musí mít příponu '.html' a obsahovat validní dokument HTML. Je-li přítomný atribut 'lang' značky html, musí značit češtinu (např. \"cs\"). Speciální znaky musí být psány entitně."
 
 export function canBeCzechValid(parsedDocument: Document): boolean {
     const documentElement: HTMLElement = parsedDocument.documentElement

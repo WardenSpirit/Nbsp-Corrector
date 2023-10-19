@@ -26,16 +26,22 @@ export class CharacterTooLongError extends Error {
 }
 
 export function read(): string {
-    console.log(`Debug: The document's length is ${getActiveDocument().getText().length}`)
     return getActiveDocument().getText()
 }
-/*
-export function rewriteCharacter(index: number, newChar: string) {
-    if (newChar.length != 1) {
-        throw new CharacterTooLongError();
-    }
-    return rewriteSection([newChar, index, index + 1], );
-}*/
+
+export function applyChanges(changes: Change[]) {
+    const activeEditor = getActiveEditor()
+    const activeDocument = getDocumentFromEditor(activeEditor)
+
+    checkRanges(changes, activeDocument)
+
+    activeEditor.edit((editBuilder) => {
+        let change: Change | undefined
+        while (change = changes.pop()) {
+            rewriteSection(change, activeDocument, editBuilder)
+        }
+    })
+}
 
 function getActiveDocument(): vscode.TextDocument {
     const activeEditor = getActiveEditor();
@@ -56,20 +62,6 @@ function getDocumentFromEditor(activeEditor: vscode.TextEditor): vscode.TextDocu
     return document
 }
 
-export function applyChanges(changes: Change[]) {
-    const activeEditor = getActiveEditor()
-    const activeDocument = getDocumentFromEditor(activeEditor)
-
-    checkRanges(changes, activeDocument)
-
-    activeEditor.edit((editBuilder) => {
-        let change: Change | undefined
-        while (change = changes.pop()) {
-            rewriteSection(change, activeDocument, editBuilder)
-        }
-    })
-}
-
 function checkRanges(changes: Change[], target: vscode.TextDocument) {
     const textLength = target.getText().length
     changes.forEach(change => {
@@ -80,7 +72,6 @@ function checkRanges(changes: Change[], target: vscode.TextDocument) {
 }
 
 function rewriteSection(change: Change, target: vscode.TextDocument, editBuilder: vscode.TextEditorEdit) {
-    console.log(`rewriteSection("${change[0]}", ${change[1]}, ${change[2]}) invoked`)
     const range = new vscode.Range(
         target.positionAt(change[1]),
         target.positionAt(change[2])

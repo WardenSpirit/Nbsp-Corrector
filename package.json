@@ -1,6 +1,6 @@
 {
   "name": "nbspcorrector",
-  "displayName": "nbspcorrector",
+  "displayName": "Korektor nezlomitelných mezer v HTML",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -35,15 +35,7 @@
             "&nbsp;",
             "&#160;",
             "&#xA0;",
-            "&#xa0;",
-            "\" \""
-          ],
-          "enumItemLabels": [
-            "",
-            "",
-            "",
-            "",
-            "Znak nezlomitelné mezery (alt + 0160)"
+            "&#xa0;"
           ],
           "default": "&nbsp;",
           "description": "Vyber zápis používaný pro nezlomitelné mezery."
@@ -52,7 +44,7 @@
           "order": 1,
           "type": "boolean",
           "default": true,
-          "description": "Ignoruj nezlomitelné mezery obsažené v upravovaném textu."
+          "description": "Opravuj nezlomitelné mezery obsažené v upravovaném textu."
         },
         "nbspcorrector.pokročilé.zalamováníKolemMatematickýchOperátorů": {
           "order": 2,

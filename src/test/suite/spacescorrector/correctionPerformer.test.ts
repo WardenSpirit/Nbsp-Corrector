@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { Change } from "../../../runcode/documentaccess/Change"
 import * as settingsAccess from "../../../runcode/settings/settingsAccess"
-import { createAllCorrections, exportedForTesting } from "../../../runcode/spacescorrector/correctionPerformer"
+import { createAllCorrections, exportedForTesting } from "../../../runcode/spacescorrector/correctionCreator"
 const { createCorrectionFromMatch } = exportedForTesting
 
 suite('CorrectionExecution test suite', () => {

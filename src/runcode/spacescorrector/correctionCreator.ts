@@ -24,11 +24,11 @@ function createRegexpCorrections(regexp: RegExp, correctedText: string): Change[
 
 const NBSPNotation = settingsAccess.loadNBSPNotation()
 
-function createCorrectionFromMatch(match: RegExpExecArray, regexp: RegExp): Change {
+function createCorrectionFromMatch(match: RegExpExecArray, regexp: RegExp): Change {    
     const startIndex: number = match.index
     const endIndex: number = regexp.lastIndex
     const replaced: string = match.input.substring(startIndex, endIndex)
     const replacement: string = replaced.replace(/ /g, NBSPNotation)
     regexp.lastIndex = startIndex + 1
-    return [replacement, startIndex, endIndex];
+    return [replacement, startIndex, endIndex]
 }

@@ -1,10 +1,11 @@
-import { ConfigData, loadNBSPNotation, loadRegexpsConfiguration } from "../settings/settingsAccess"
+import { ConfigData, loadRegexpsConfiguration, loadRewriteActive } from "../settings/settingsAccess"
 import * as regexpsDB from './regularExpressionsDB'
 
 export function loadRegexps(): RegExp[] {
     const regexps: RegExp[] = []
     addAlwaysOnRegexps(regexps)
     addRegexpsAccordingToConfiguration(regexps, loadRegexpsConfiguration())
+    if (loadRewriteActive()) { makeRewriting(regexps) }
     return regexps
 }
 
@@ -29,9 +30,9 @@ function addRegexpsAccordingToConfiguration(regexps: RegExp[], regexpsConfigurat
         regexps.push(...regexpsDB.NBSP_BEFORE_MINUSES)
         regexps.push(...regexpsDB.NBSP_BEFORE_SLASHES)
     }
-    
+
     if (regexpsConfiguration.romanCaution) regexps.push(...regexpsDB.IV_NOT_NUMERALS)
-    
+
     if (regexpsConfiguration.datesValidation) {
         regexps.push(...regexpsDB.VALIDATED_SEPARATED_CALENDAR_DATES)
         if (!regexpsConfiguration.monthYearSeparation) regexps.push(...regexpsDB.VALIDATED_JOINED_CALENDAR_DATES)
@@ -44,4 +45,12 @@ function addRegexpsAccordingToConfiguration(regexps: RegExp[], regexpsConfigurat
     if (regexpsConfiguration.wrapAfterDegrees) regexps.push(...regexpsDB.DEGREES)
     if (regexpsConfiguration.wrapInMathParentheses) regexps.push(...regexpsDB.MATH_PARENTHESES)
     regexps.push(...(regexpsConfiguration.custom))
+}
+
+function makeRewriting(regexps: RegExp[]) {
+    for (let regexpI = 0; regexpI < regexps.length; regexpI++) {
+        const newSource = regexps[regexpI].source.replace(/ /g, "(?: | |&nbsp;?|(?:&#160|&#xA0);)")
+        const flags = regexps[regexpI].flags
+        regexps[regexpI] = new RegExp(newSource, flags)
+    }    
 }
