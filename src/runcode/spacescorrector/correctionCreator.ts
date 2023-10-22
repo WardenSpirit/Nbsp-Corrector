@@ -6,7 +6,7 @@ export const exportedForTesting = {
     createCorrectionFromMatch: createChangesFromMatch
 }
 
-export function createSpaceUnificationus(correctedText: string): Change[] {
+export function createSpaceUnifications(correctedText: string): Change[] {
     const changes: Change[] = []
     const spaceEntities = /(?: |&nbsp;?|(?:&#160|&#xA0);)/g
     changes.push(...createRegexpChanges(spaceEntities, correctedText, () => " "))
