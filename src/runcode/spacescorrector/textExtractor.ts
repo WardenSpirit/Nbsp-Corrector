@@ -35,7 +35,7 @@ function getTextParts(
 ): [textPart: string, offset: number][] {
   const textParts: [textPart: string, offset: number][] = []
 
-  const children = element.querySelectorAll(":scope > *")
+  const children = element.children
 
   let nonChildTexts: [string, number][] = getNonChildParts(element.innerHTML, children, offset)
   const childOffsets: number[] = getChildParts(element.innerHTML, children, offset)
@@ -55,7 +55,7 @@ function getTextParts(
 }
 
 
-function getNonChildParts(parentInnerHTML: string, children: NodeListOf<Element>, offset: number): [textPart: string, offset: number][] {
+function getNonChildParts(parentInnerHTML: string, children: HTMLCollection, offset: number): [textPart: string, offset: number][] {
   let nonChildParts: [textPart: string, offset: number][] = []
 
   let partStart = 0
@@ -71,7 +71,7 @@ function getNonChildParts(parentInnerHTML: string, children: NodeListOf<Element>
 }
 
 
-function getChildParts(parentInnerHTML: string, children: NodeListOf<Element>, offset: number): number[] {
+function getChildParts(parentInnerHTML: string, children: HTMLCollection, offset: number): number[] {
   let childParts: number[] = []
 
   let precedingChildEnd = 0

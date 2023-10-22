@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import { Change } from "./Change"
+import { setTimeout } from "timers/promises"
 
 export class NoActiveEditorError extends Error {
     private static readonly MESSAGE = "Aktivní okno editoru nenalezeno!"
@@ -25,30 +26,28 @@ export class CharacterTooLongError extends Error {
     }
 }
 
-export function read(): string {
-    return getActiveDocument().getText()
+export function loadDocument() {
+    activeEditor = getActiveEditor()
+    activeDocument = getDocumentFromEditor(activeEditor)
 }
 
-export function applyChanges(changes: Change[]) {
-    const activeEditor = getActiveEditor()
-    const activeDocument = getDocumentFromEditor(activeEditor)
+export function read(): string {
+    return activeDocument.getText()
+}
 
+export async function applyChanges(changes: Change[]) {
     checkRanges(changes, activeDocument)
 
-    activeEditor.edit((editBuilder) => {
+    await activeEditor.edit((editBuilder) => {
         let change: Change | undefined
         while (change = changes.pop()) {
-            rewriteSection(change, activeDocument, editBuilder)
+            rewriteSection(change!, activeDocument, editBuilder)
         }
     })
 }
 
-function getActiveDocument(): vscode.TextDocument {
-    const activeEditor = getActiveEditor();
-    const document = activeEditor.document
-    if (document.languageId !== "html") throw new InvalidDocumentTypeError()
-    return document
-}
+let activeEditor: vscode.TextEditor
+let activeDocument: vscode.TextDocument
 
 function getActiveEditor(): vscode.TextEditor {
     const activeEditor = vscode.window.activeTextEditor;

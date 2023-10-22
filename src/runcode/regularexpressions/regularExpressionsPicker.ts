@@ -5,7 +5,6 @@ export function loadRegexps(): RegExp[] {
     const regexps: RegExp[] = []
     addAlwaysOnRegexps(regexps)
     addRegexpsAccordingToConfiguration(regexps, loadRegexpsConfiguration())
-    if (loadRewriteActive()) { makeRewriting(regexps) }
     return regexps
 }
 
@@ -45,12 +44,4 @@ function addRegexpsAccordingToConfiguration(regexps: RegExp[], regexpsConfigurat
     if (regexpsConfiguration.wrapAfterDegrees) regexps.push(...regexpsDB.DEGREES)
     if (regexpsConfiguration.wrapInMathParentheses) regexps.push(...regexpsDB.MATH_PARENTHESES)
     regexps.push(...(regexpsConfiguration.custom))
-}
-
-function makeRewriting(regexps: RegExp[]) {
-    for (let regexpI = 0; regexpI < regexps.length; regexpI++) {
-        const newSource = regexps[regexpI].source.replace(/ /g, "(?: | |&nbsp;?|(?:&#160|&#xA0);)")
-        const flags = regexps[regexpI].flags
-        regexps[regexpI] = new RegExp(newSource, flags)
-    }    
 }

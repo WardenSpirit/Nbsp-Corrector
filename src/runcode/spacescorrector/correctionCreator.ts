@@ -3,32 +3,39 @@ import * as settingsAccess from "../settings/settingsAccess"
 import * as regularExpressions from "../regularexpressions/regularExpressionsPicker"
 
 export const exportedForTesting = {
-    createCorrectionFromMatch
+    createCorrectionFromMatch: createChangesFromMatch
+}
+
+export function createSpaceUnificationus(correctedText: string): Change[] {
+    const changes: Change[] = []
+    const spaceEntities = /(?: |&nbsp;?|(?:&#160|&#xA0);)/g
+    changes.push(...createRegexpChanges(spaceEntities, correctedText, () => " "))
+    return changes
 }
 
 export function createAllCorrections(correctedText: string): Change[] {
     const changes: Change[] = []
     const regexps = regularExpressions.loadRegexps()
-    regexps.forEach(regexp => changes.push(...createRegexpCorrections(regexp, correctedText)))
-    return changes
-}
-
-function createRegexpCorrections(regexp: RegExp, correctedText: string): Change[] {
-    const changes: Change[] = []
-    let match
-    while ((match = regexp.exec(correctedText)) !== null) {
-        changes.push(createCorrectionFromMatch(match, regexp))
-    }
+    regexps.forEach(regexp => changes.push(...createRegexpChanges(regexp, correctedText, (replaced: string) => replaced.replace(/ /g, NBSPNotation))))
     return changes
 }
 
 const NBSPNotation = settingsAccess.loadNBSPNotation()
 
-function createCorrectionFromMatch(match: RegExpExecArray, regexp: RegExp): Change {    
+function createRegexpChanges(regexp: RegExp, correctedText: string, replacementGetter: (replaced: string) => string): Change[] {
+    const changes: Change[] = []
+    let match
+    while ((match = regexp.exec(correctedText)) !== null) {
+        changes.push(createChangesFromMatch(match, regexp, replacementGetter))
+    }
+    return changes
+}
+
+function createChangesFromMatch(match: RegExpExecArray, regexp: RegExp, replacementGetter: (replaced: string) => string): Change {
     const startIndex: number = match.index
     const endIndex: number = regexp.lastIndex
     const replaced: string = match.input.substring(startIndex, endIndex)
-    const replacement: string = replaced.replace(/ /g, NBSPNotation)
+    const replacement: string = replacementGetter(replaced)
     regexp.lastIndex = startIndex + 1
     return [replacement, startIndex, endIndex]
 }
