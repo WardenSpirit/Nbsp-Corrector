@@ -2,7 +2,7 @@
   "name": "nbspcorrector",
   "displayName": "Korektor nezlomitelných mezer v HTML",
   "description": "",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "WardenSpirit",
   "repository": "https://github.com/WardenSpirit/Nbsp-Corrector",
   "engines": {
