@@ -31,12 +31,12 @@ Speciální znaky obsažené v HTML dokumentu přináší problémy, jelikož je
 
 Updaty budou následovat požadavky uživatelů.
 
-### 1.0.1
+### 0.0.1
 
 Drobné estetické úpravy.
 
 - nezobrazuje zbytečné info o chybách
 
-### 1.0.0
+### 0.0.0
 
 Toto je první vydání.
