@@ -3,6 +3,8 @@
   "displayName": "Korektor nezlomitelných mezer v HTML",
   "description": "",
   "version": "0.0.1",
+  "publisher": "WardenSpirit",
+  "repository": "https://github.com/WardenSpirit/Nbsp-Corrector",
   "engines": {
     "vscode": "^1.81.0"
   },
