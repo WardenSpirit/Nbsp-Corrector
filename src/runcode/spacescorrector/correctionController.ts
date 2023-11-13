@@ -8,20 +8,17 @@ import jsdom = require("jsdom")
 const { JSDOM } = jsdom
 const DOMParser = new JSDOM().window.DOMParser
 
-const changes: Change[] = []
-
 export async function correctActiveDocument() {
-    await makeDocumentChange(createSpaceUnifications)
-    await makeDocumentChange(createAllCorrections)
+    await changeTexts(createSpaceUnifications)
+    await changeTexts(createAllCorrections)
 }
 
-async function makeDocumentChange(changesGeneration: (correctedText: string) => Change[]) {
+async function changeTexts(changesGeneration: (correctedText: string) => Change[]) {
     let HTMLText = gainText()
     if (!HTMLText) return
 
     let textParts = DOMRecurser.extractTexts(HTMLText)
     const changes: Change[] = generateChanges(textParts, changesGeneration)
-    inform(`Change(s) (${changes.length}): [${changes.join("; ")}]`)
     await documentAccess.applyChanges(changes)
 }
 
