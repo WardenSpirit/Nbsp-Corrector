@@ -10,7 +10,7 @@ Nezlomitelné mezery jsou vkládány podle českých technických norem (ČSN 0
 
 Podporované entity pro nezlomitelné mezery jsou: *\&nbsp;*, *\&#160;*, *\&#xA0;* a *\&#xa0;*.
 
-![Nahrazení](assets/nbsp_showcase.gif)
+![Nahrazení]([assets/nbsp_showcase.gif](https://raw.githubusercontent.com/WardenSpirit/Nbsp-Corrector/master/assets/nbsp_showcase.gif?token=GHSAT0AAAAAACKGVNFKMIHDQILEKZ7BTQIQZKTWLNQ))
 
 ## Ovládání
 
@@ -20,7 +20,7 @@ Napíšete text se standardními mezerami bez starostí se zalamováním a ná
 
 Pokud chcete vrátit opravu mezer, funguje klasické undo (**ctrl + z**) 
           
-## Extension Settings
+## Nastavení rozšíření
 
 Pokud Vám implicitní nastavení nevyhovuje, chování si lze přizpůsobit pomocí regulárních výrazů.
 
@@ -39,13 +39,9 @@ Speciální znaky obsažené v HTML dokumentu přináší problémy, jelikož j
 
 Nová vydání budou následovat podle požadavků uživatelů.
 
-### 0.0.2
+### 0.0.1-0.0.3
 
 Drobné estetické úpravy, bohatší readme.
-
-### 0.0.1
-
-Drobné estetické úpravy.
 
 ### 0.0.0
 
