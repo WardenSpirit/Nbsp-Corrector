@@ -9,41 +9,40 @@ const { JSDOM } = jsdom
 const DOMParser = new JSDOM().window.DOMParser
 
 export async function correctActiveDocument() {
-    await changeTexts(createSpaceUnifications)
-    await changeTexts(createAllCorrections)
-}
-
-async function changeTexts(changesGeneration: (correctedText: string) => Change[]) {
-    let HTMLText = gainText()
-    if (!HTMLText) return
-
-    let textParts = DOMRecurser.extractTexts(HTMLText)
-    const changes: Change[] = generateChanges(textParts, changesGeneration)
-    await documentAccess.applyChanges(changes)
-}
-
-function gainText() : string|null {
-    let HTMLText: string
     try {
-        documentAccess.loadDocument()
-        HTMLText = documentAccess.read()
+        await changeTexts(createSpaceUnifications)
+        inform("Nezlomitelné mezery: " + await changeTexts(createAllCorrections))
     } catch (error) {
         if (error instanceof Error) alarm(error.message)
-        return null
     }
+
+}
+
+async function changeTexts(changesGeneration: (correctedText: string) => Change[]): Promise<number> {
+    let HTMLText = obtainText()
+    let textParts = DOMRecurser.extractTexts(HTMLText)
+
+    const changes: Change[] = generateChanges(textParts, changesGeneration)
+    let numberOfChanges = changes.length
+    await documentAccess.applyChanges(changes)
+    return numberOfChanges
+}
+
+function obtainText(): string {
+    let HTMLText: string
+    HTMLText = documentAccess.read()
 
     const parsedDocument = new DOMParser().parseFromString(HTMLText, 'text/html')
 
     if (!documentValidator.canBeCzechValid(parsedDocument)) {
-        alarm(documentValidator.ERROR_MESSAGE)
-        return null
+        throw new Error(documentValidator.ERROR_MESSAGE)
     }
 
     return HTMLText
 }
 
 function generateChanges(textParts: [textPart: string, offset: number][],
-    changesGeneration: (changedText: string) => Change[]) : Change[] {
+    changesGeneration: (changedText: string) => Change[]): Change[] {
     const allGenerated: Change[] = []
     for (let textPartI = 0; textPartI < textParts.length; textPartI++) {
         const textPart = textParts[textPartI]
@@ -59,7 +58,7 @@ function generateChanges(textParts: [textPart: string, offset: number][],
 function pushWithOffset(change: Change, offset: number, allGenerated: Change[]) {
     change[1] += offset
     change[2] += offset
-    allGenerated.push(change) 
+    allGenerated.push(change)
 }
 
 function updateTextParts(updatedParts: [textPart: string, offset: number][], change: Change) {
