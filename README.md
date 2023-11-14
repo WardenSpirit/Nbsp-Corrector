@@ -37,7 +37,11 @@ Speciální znaky obsažené v HTML dokumentu přináší problémy, jelikož j
 
 ## Poznámky k verzím
 
-Updaty budou následovat podle požadavků uživatelů.
+Nová vydání budou následovat podle požadavků uživatelů.
+
+### 0.0.2
+
+Drobné estetické úpravy, bohatší readme.
 
 ### 0.0.1
 
