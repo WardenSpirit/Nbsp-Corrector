@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import { Change } from "./Change"
-import { setTimeout } from "timers/promises"
 
 export class NoActiveEditorError extends Error {
     private static readonly MESSAGE = "Aktivní okno editoru nenalezeno!"
@@ -26,12 +25,9 @@ export class CharacterTooLongError extends Error {
     }
 }
 
-export function loadDocument() {
+export function read(): string {
     activeEditor = getActiveEditor()
     activeDocument = getDocumentFromEditor(activeEditor)
-}
-
-export function read(): string {
     return activeDocument.getText()
 }
 
