@@ -10,7 +10,7 @@ Nezlomitelné mezery jsou vkládány podle českých technických norem (ČSN 0
 
 Podporované entity pro nezlomitelné mezery jsou: *\&nbsp;*, *\&#160;*, *\&#xA0;* a *\&#xa0;*.
 
-![Nahrazení](https://raw.githubusercontent.com/WardenSpirit/Nbsp-Corrector/master/nbsp_showcase.gif?token=GHSAT0AAAAAACKGVNFLCR243OUFNVSGXURIZKTPPAA)
+![Nahrazení](assets/nbsp_showcase.gif)
 
 ## Ovládání
 
