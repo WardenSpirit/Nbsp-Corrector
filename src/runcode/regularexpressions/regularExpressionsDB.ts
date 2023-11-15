@@ -38,5 +38,5 @@ export const ALL_JOINED_CALENDAR_DATES: RegExp[] = [
     /(?<=^| )\d+\. ?\d+\. \d+/g,
 /(?<=^| )\d+\. ?(?:ledna|února|března|dubna|května|máje|června|července|srpna|září|října|listopadu|prosince)(?: ?\d+\b)?/g]
 
-export const DEGREES: RegExp[] = [/(?:(?:Bc|BcA|Ing|ing|Ing\. arch|ing\. arch|MUDr|NDDr|MSDr|MVDr|MgA|Mgr|JUDr|RNDr|PharmDr|ThDr|ThLic|ThMgr|PhDr|PaedDr|RSDr|RCDr|RTDr|dr|ak\. arch|akad\. arch|ak\. mal|akad\. mal|ak. soch|akad\. soch|akad|doc|prof|doc|prof|brig\. gen|genmjr|genpor|arm\. gen|mjr|pplk|plk|ppor|por|npor|kpt|rtm|nrtm|šrtm|pprap|prap|nprap|št\. prap|šprap|des|čet|rtn|voj|sv|svob|stržm|nstržm)\. (?:(?:et|&) )?)+[A-ZĚŠČŘŽÝÁÉÍÚŮ]/g]
+export const DEGREES: RegExp[] = [/(?:(?:Bc|BcA|Ing|ing|Ing\. arch|ing\. arch|MUDr|NDDr|MSDr|MVDr|MgA|Mgr|JUDr|RNDr|PharmDr|ThDr|ThLic|ThMgr|PhDr|PaedDr|RSDr|RCDr|RTDr|dr|ak\. arch|akad\. arch|ak\. mal|akad\. mal|ak\. soch|akad\. soch|akad|doc|prof|doc|prof|brig\. gen|genmjr|genpor|arm\. gen|mjr|pplk|plk|ppor|por|npor|kpt|rtm|nrtm|šrtm|pprap|prap|nprap|št\. prap|šprap|des|čet|rtn|voj|sv|svob|stržm|nstržm)\. (?:(?:et|&) )?)+[A-ZĚŠČŘŽÝÁÉÍÚŮ]/g]
 export const MATH_PARENTHESES: RegExp[] = [/\([+-±×x·:÷\/ \d,abcklmnxyz]+?\)/g]

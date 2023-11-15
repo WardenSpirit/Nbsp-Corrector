@@ -42,7 +42,7 @@ function addRegexpsAccordingToConfiguration(regexps: RegExp[], regexpsConfigurat
     }
     regexps.push(...datesRegexps)
 
-    if (regexpsConfiguration.wrapAfterDegrees) regexps.push(...regexpsDB.DEGREES)
-    if (regexpsConfiguration.wrapInMathParentheses) regexps.push(...regexpsDB.MATH_PARENTHESES)
+    if (!regexpsConfiguration.wrapAfterDegrees) regexps.push(...regexpsDB.DEGREES)
+    if (!regexpsConfiguration.wrapInMathParentheses) regexps.push(...regexpsDB.MATH_PARENTHESES)
     regexps.push(...(regexpsConfiguration.custom))
 }
