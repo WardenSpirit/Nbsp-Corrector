@@ -4,6 +4,12 @@ Zde hledejte popis významných změn tohoto rozšíření.
 
 Formát z [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.5] - 2023-11-15
+
+### Fixed
+
+- aplikace pravidel pro hodnosti a matematické výrazy v závorkách
+
 ## [0.0.4] - 2023-11-15
 
 ### Fixed

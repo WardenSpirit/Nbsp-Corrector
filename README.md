@@ -41,9 +41,13 @@ Speciální znaky obsažené v HTML dokumentu přináší problémy, jelikož j
 
 Nová vydání budou následovat podle požadavků uživatelů.
 
+### 0.0.5
+
+Oprava pravidel pro hodnosti a matematické výrazy v závorkách.
+
 ### 0.0.4
 
-Oprava některých regulárních výrazů, změna upozornění.
+Změna zprávy v upozornění po skončení běhu programu.
 
 ### 0.0.1-0.0.3
 
