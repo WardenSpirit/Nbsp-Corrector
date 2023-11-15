@@ -17,7 +17,7 @@ export function createAllCorrections(correctedText: string): Change[] {
     const changes: Change[] = []
     const regexps = regularExpressions.loadRegexps()
     regexps.forEach(regexp => changes.push(...createRegexpChanges(regexp, correctedText, (replaced: string) => replaced.replace(/ /g, NBSPNotation))))
-    return changes
+    return changes.sort((change1, change2) => change1[1] - change2[1])
 }
 
 const NBSPNotation = settingsAccess.loadNBSPNotation()
@@ -27,6 +27,7 @@ function createRegexpChanges(regexp: RegExp, correctedText: string, replacementG
     let match
     while ((match = regexp.exec(correctedText)) !== null) {
         changes.push(createChangesFromMatch(match, regexp, replacementGetter))
+        regexp.lastIndex = match.index + 1
     }
     return changes
 }
@@ -35,7 +36,7 @@ function createChangesFromMatch(match: RegExpExecArray, regexp: RegExp, replacem
     const startIndex: number = match.index
     const endIndex: number = regexp.lastIndex
     const replaced: string = match.input.substring(startIndex, endIndex)
+    console.log(`RE: ${regexp.source}, match: "${match.input.substring(startIndex - 4, endIndex + 4)}"), start index: + ${startIndex}`)
     const replacement: string = replacementGetter(replaced)
-    regexp.lastIndex = startIndex + 1
     return [replacement, startIndex, endIndex]
 }

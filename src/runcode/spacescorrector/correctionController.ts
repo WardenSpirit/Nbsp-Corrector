@@ -11,11 +11,10 @@ const DOMParser = new JSDOM().window.DOMParser
 export async function correctActiveDocument() {
     try {
         await changeTexts(createSpaceUnifications)
-        inform("Nezlomitelné mezery: " + await changeTexts(createAllCorrections))
+        inform("Nalezené výrazy: " + await changeTexts(createAllCorrections))
     } catch (error) {
-        if (error instanceof Error) alarm(error.message)
+        if (error instanceof Error) alarm(`Je mi líto, něco se nepovedlo: ${error.message}`)
     }
-
 }
 
 async function changeTexts(changesGeneration: (correctedText: string) => Change[]): Promise<number> {

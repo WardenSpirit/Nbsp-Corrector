@@ -4,6 +4,17 @@ Zde hledejte popis významných změn tohoto rozšíření.
 
 Formát z [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.0.4] - 2023-11-15
+
+### Fixed
+
+- opět obrázek v README.md
+
+### Changed
+
+- upřesnění sdělení v upozornění při zdárném dokončení vkládání
+- upřesnění sdělení v upozornění při předčasném ukončení
+
 ## [0.0.3] - 2023-11-14
 
 ### Fixed

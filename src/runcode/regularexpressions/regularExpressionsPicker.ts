@@ -32,14 +32,15 @@ function addRegexpsAccordingToConfiguration(regexps: RegExp[], regexpsConfigurat
 
     if (regexpsConfiguration.romanCaution) regexps.push(...regexpsDB.IV_NOT_NUMERALS)
 
+    let datesRegexps: RegExp[]
     if (regexpsConfiguration.datesValidation) {
-        regexps.push(...regexpsDB.VALIDATED_SEPARATED_CALENDAR_DATES)
-        if (!regexpsConfiguration.monthYearSeparation) regexps.push(...regexpsDB.VALIDATED_JOINED_CALENDAR_DATES)
+        if (regexpsConfiguration.monthYearSeparation) datesRegexps = regexpsDB.VALIDATED_SEPARATED_CALENDAR_DATES
+        else datesRegexps = regexpsDB.VALIDATED_JOINED_CALENDAR_DATES
+    } else {
+        if (regexpsConfiguration.monthYearSeparation) datesRegexps = regexpsDB.ALL_SEPARATED_CALENDAR_DATES
+        else datesRegexps = regexpsDB.ALL_JOINED_CALENDAR_DATES
     }
-    else {
-        regexps.push(...regexpsDB.ALL_SEPARATED_CALENDAR_DATES)
-        if (!regexpsConfiguration.monthYearSeparation) regexps.push(...regexpsDB.ALL_JOINED_CALENDAR_DATES)
-    }
+    regexps.push(...datesRegexps)
 
     if (regexpsConfiguration.wrapAfterDegrees) regexps.push(...regexpsDB.DEGREES)
     if (regexpsConfiguration.wrapInMathParentheses) regexps.push(...regexpsDB.MATH_PARENTHESES)

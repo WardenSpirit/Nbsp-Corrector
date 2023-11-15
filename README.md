@@ -1,5 +1,7 @@
 # README
 
+Keywords: *HTML*, *\&nbsp*, *wrapping of czech text*, *non-breaking spaces*
+
 Klíčová slova: *HTML*, *\&nbsp*, *zalamování českého textu*, *nezlomitelné mezery*
 
 Entity pro nezlomitelné mezery (např. \&nbsp) se skládají nejméně z 5 znaků. Psaní nezlomitelných mezer tak stojí zbytečně mnoho času. Nástroj, který to dělá automaticky, tento čas ušetří. Tady je.
@@ -10,7 +12,7 @@ Nezlomitelné mezery jsou vkládány podle českých technických norem (ČSN 0
 
 Podporované entity pro nezlomitelné mezery jsou: *\&nbsp;*, *\&#160;*, *\&#xA0;* a *\&#xa0;*.
 
-![Nahrazení]([assets/nbsp_showcase.gif](https://raw.githubusercontent.com/WardenSpirit/Nbsp-Corrector/master/assets/nbsp_showcase.gif?token=GHSAT0AAAAAACKGVNFKMIHDQILEKZ7BTQIQZKTWLNQ))
+![Nahrazení](https://raw.githubusercontent.com/WardenSpirit/Nbsp-Corrector/master/assets/nbsp_showcase.gif)
 
 ## Ovládání
 
@@ -38,6 +40,10 @@ Speciální znaky obsažené v HTML dokumentu přináší problémy, jelikož j
 ## Poznámky k verzím
 
 Nová vydání budou následovat podle požadavků uživatelů.
+
+### 0.0.4
+
+Oprava některých regulárních výrazů, změna upozornění.
 
 ### 0.0.1-0.0.3
 
