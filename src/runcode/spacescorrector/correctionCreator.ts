@@ -36,7 +36,6 @@ function createChangesFromMatch(match: RegExpExecArray, regexp: RegExp, replacem
     const startIndex: number = match.index
     const endIndex: number = regexp.lastIndex
     const replaced: string = match.input.substring(startIndex, endIndex)
-    console.log(`RE: ${regexp.source}, match: "${match.input.substring(startIndex - 4, endIndex + 4)}"), start index: + ${startIndex}`)
     const replacement: string = replacementGetter(replaced)
     return [replacement, startIndex, endIndex]
 }

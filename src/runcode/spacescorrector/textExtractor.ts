@@ -33,22 +33,21 @@ function getTextParts(
   element: Element,
   offset: number
 ): [textPart: string, offset: number][] {
-  const textParts: [textPart: string, offset: number][] = []
 
+  const textParts: [textPart: string, offset: number][] = []
   const children = element.children
 
   let nonChildTexts: [string, number][] = getNonChildParts(element.innerHTML, children, offset)
-  const childOffsets: number[] = getChildParts(element.innerHTML, children, offset)
+  const childOffsets: number[] = getChildPartsOffsets(element.innerHTML, children, offset)
 
   for (let childI = 0; childI < children.length; childI++) {
-    const beforeChild: [string, number] = nonChildTexts[childI]
     const child = children[childI]
-    const childPartOffset = childOffsets[childI]
+    const beforeChild: [string, number] = nonChildTexts[childI]
+    const childOffset = childOffsets[childI]
 
     textParts.push(beforeChild)
-    textParts.push(...getTextParts(child, childPartOffset))
+    textParts.push(...getTextParts(child, childOffset))
   }
-
   textParts.push(nonChildTexts.at(-1)!)
 
   return textParts
@@ -71,7 +70,7 @@ function getNonChildParts(parentInnerHTML: string, children: HTMLCollection, off
 }
 
 
-function getChildParts(parentInnerHTML: string, children: HTMLCollection, offset: number): number[] {
+function getChildPartsOffsets(parentInnerHTML: string, children: HTMLCollection, offset: number): number[] {
   let childParts: number[] = []
 
   let precedingChildEnd = 0
