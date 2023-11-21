@@ -13,7 +13,7 @@ export const MIXED_NUMBERS: RegExp[] = [/\d+ \d+\/\d+?/g]
 // rough and allways on
 export const PREPOSITIONS_CONJUNCTIONS: RegExp[] = [
     /(?<=^| )[kKsSzZoOuUaAvi] \b/g,
-    /(?<=\. )[VI] [\b"'\[({.]/g]
+    /(?<=\. )[VI] [\b"'\.]/g]
 
 // rough and switchable
 export const NBSP_AFTER_MATH: RegExp[] = [/\d [=<>≤≥+±×x·÷]/g]
