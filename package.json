@@ -1,17 +1,37 @@
 {
   "name": "nbspcorrector",
-  "displayName": "Korektor nezlomitelných mezer v HTML",
-  "description": "",
+  "displayName": "Czech &nbsp; Corrector",
+  "description": "Automatické vkládání nezlomitelných mezer do HTML dokumentů podle ČSN 01 6910. Soustřeďte se na obsah, nikoli na formátování.",
+  "categories": [
+    "Programming Languages",
+    "Formatters"
+  ],
+  "keywords": [
+    "HTML",
+    "nbsp",
+    "wrapping lines",
+    "line-wrap",
+    "Czech",
+    "non-breaking spaces",
+    "typography",
+    "zalamování řádků",
+    "nezlomitelné mezery",
+    "typografie"
+  ],
   "icon": "assets/icon.png",
-  "version": "0.0.5",
+  "galleryBanner": {
+    "color": "#273D21",
+    "theme": "dark"
+  },
+  "version": "0.1.0",
   "publisher": "WardenSpirit",
-  "repository": "https://github.com/WardenSpirit/Nbsp-Corrector",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WardenSpirit/Nbsp-Corrector"
+  },
   "engines": {
     "vscode": "^1.81.0"
   },
-  "categories": [
-    "Other"
-  ],
   "main": "./out/runcode/controlregister/extensionActivator.js",
   "contributes": {
     "commands": [

@@ -1,8 +1,4 @@
-# README
-
-Keywords: *HTML*, *\&nbsp*, *wrapping of czech text*, *non-breaking spaces*
-
-Klíčová slova: *HTML*, *\&nbsp*, *zalamování českého textu*, *nezlomitelné mezery*
+# Czech \&nbsp; Corrector
 
 Entity pro nezlomitelné mezery (např. \&nbsp) se skládají nejméně z 5 znaků. Psaní nezlomitelných mezer tak stojí zbytečně mnoho času. Nástroj, který to dělá automaticky, tento čas ušetří. Tady je.
 
@@ -17,7 +13,7 @@ Podporované entity pro nezlomitelné mezery jsou: *\&nbsp;*, *\&#160;*, *\&#xA0
 ## Ovládání
 
 Napíšete text se standardními mezerami bez starostí se zalamováním a následně necháte nezlomitelné mezery vložit automaticky: v otevřeném editoru HTML dokumentu použijte jeden z těchto způsobů:
-- stiskněte zkratku **ctrl + alt + n + b**
+- použijte zkratku **ctrl + alt + n** *chord to* **ctrl + alt + b**
 - v paletě příkazů (command palette; zkratka **ctrl + shift + P**) a zvolte **```Oprav nezlomitelné mezery```**
 
 Pokud chcete vrátit opravu mezer, funguje klasické undo (**ctrl + z**) 
@@ -40,6 +36,14 @@ Speciální znaky obsažené v HTML dokumentu přináší problémy, jelikož j
 ## Poznámky k verzím
 
 Nová vydání budou následovat podle požadavků uživatelů.
+
+### 0.1.0-0.1.1
+
+Nový název (Korektor nezlomitelných mezer v HTML → Czech \&nbsp; Typography)
+
+Oprava vložení nezlomitelných mezer na nesprávná místa, např. v tabulkách a za nimi.
+
+Nová ikona.
 
 ### 0.0.5
 
