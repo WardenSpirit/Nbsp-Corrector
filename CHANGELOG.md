@@ -2,7 +2,19 @@
 
 Zde hledejte popis významných změn tohoto rozšíření.
 
-Formát z [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+(Používán formát z [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).)
+
+## [0.1.1] - 2023-11-21
+
+### Fixed
+
+- oprava chybných indexů kvůli tagům přidávaným DOMParserem – např. tag <tbody>/</tbody> v tabulkách
+
+### Changed
+
+- ikona
+- název (Korektor nezlomitelných mezer v HTML → Czech \&nbsp; Corrector)
+- klíčová slova přesunuta do manifestu
 
 ## [0.0.5] - 2023-11-15
 
