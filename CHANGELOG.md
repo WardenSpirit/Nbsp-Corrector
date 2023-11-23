@@ -8,12 +8,12 @@ Zde hledejte popis významných změn tohoto rozšíření.
 
 ### Fixed
 
-- oprava chybných indexů kvůli tagům přidávaným DOMParserem – např. tag <tbody>/</tbody> v tabulkách
+- oprava chybných indexů kvůli tagům přidávaným DOMParserem – např. *\<tbody>*/*\</tbody>* v tabulkách
 
 ### Changed
 
 - ikona
-- název (Korektor nezlomitelných mezer v HTML → Czech \&nbsp; Corrector)
+- název (*Korektor nezlomitelných mezer v HTML* → *Czech \&nbsp; Corrector*)
 - klíčová slova přesunuta do manifestu
 
 ## [0.0.5] - 2023-11-15
