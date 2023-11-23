@@ -1,5 +1,7 @@
 # Czech \&nbsp; Corrector
 
+*(English version follows)*
+
 Entity pro nezlomitelné mezery (např. \&nbsp) se skládají nejméně z 5 znaků. Psaní nezlomitelných mezer tak stojí zbytečně mnoho času. Nástroj, který to dělá automaticky, tento čas ušetří. Tady je.
 
 ## Funkce
@@ -31,7 +33,6 @@ V nabídce jsou následující nastavení:
 ## Známé problémy
 
 Implicitní nastavení není dokonalé. Některá pravidla totiž bohužel nelze snadno implementovat tak, aby to vyhovovalo všem textům.
-Speciální znaky obsažené v HTML dokumentu přináší problémy, jelikož je rozhraní DOMParser při parsování dokumentu přepisuje na entity.
 
 ## Poznámky k verzím
 
@@ -60,3 +61,35 @@ Drobné estetické úpravy, bohatší readme.
 ### 0.0.0
 
 Toto je první vydání.
+
+# Czech \&nbsp; Corrector
+
+Entities for non-breaking spaces (e.g. \&nbsp) consists of at least 5 characters. Typing these spaces thus costs unreasonable amount of time. A tool which can do it automatically saves that time. Here you go.
+
+## Functions
+
+Non-breaking spaces are inputted according to Czech technical standards (ČSN 01 6910). A list of most of them can be found e.g. at [Internet Language Guide page](https://prirucka.ujc.cas.cz/?id=880).
+
+Supported entities for non-breaking spaces are: *\&nbsp;*, *\&#160;*, *\&#xA0;* a *\&#xa0;*.
+
+![Nahrazení](https://raw.githubusercontent.com/WardenSpirit/Nbsp-Corrector/master/assets/nbsp_showcase.gif)
+
+## Controls
+
+Type text with standard spaces without worrying about wrapping and then have non-breaking spaces be inserted automatically: in the opened HTML document editor use one of these methods:
+- use keybinding: **ctrl + alt + n** *chord to* **ctrl + alt + b**
+- from the command palette (**ctrl + shift + P**) invoke **```Oprav nezlomitelné mezery```**
+
+If you wish to revert space correction, common undo (**ctrl + z**) does the thing.
+          
+## Extension Settings
+
+If default behaviour does not suit, it can be customized in settings:
+
+* `nbspcorrector.zápisNezlomitelnýchMezer`: Determine, which notation of non-breaking space (which entity) should be used.
+* `nbspcorrector.přepisPůvodníchNezlomitelnýchMezer`: Allow to overwriting non-breaking spaces with spaces where they're not considered necessary.
+* `nbspcorrector.pokročilé.*`: Customize behavious related to particular typography rules.
+
+## Known Issues
+
+The default setting is not perfect. Unluckily, it's not feasible to make it perfect with all the rules Czech language has.
