@@ -25,25 +25,14 @@ export class CharacterTooLongError extends Error {
     }
 }
 
+let activeEditor: vscode.TextEditor
+let activeDocument: vscode.TextDocument
+
 export function read(): string {
     activeEditor = getActiveEditor()
     activeDocument = getDocumentFromEditor(activeEditor)
     return activeDocument.getText()
 }
-
-export async function applyChanges(changes: Change[]) {
-    checkRanges(changes, activeDocument)
-
-    await activeEditor.edit((editBuilder) => {
-        let change: Change | undefined
-        while (change = changes.pop()) {
-            rewriteSection(change!, activeDocument, editBuilder)
-        }
-    })
-}
-
-let activeEditor: vscode.TextEditor
-let activeDocument: vscode.TextDocument
 
 function getActiveEditor(): vscode.TextEditor {
     const activeEditor = vscode.window.activeTextEditor;
@@ -55,6 +44,17 @@ function getDocumentFromEditor(activeEditor: vscode.TextEditor): vscode.TextDocu
     const document = activeEditor.document
     if (document.languageId !== "html") throw new InvalidDocumentTypeError()
     return document
+}
+
+export async function applyChanges(changes: Change[]) {
+    checkRanges(changes, activeDocument)
+
+    await activeEditor.edit((editBuilder) => {
+        let change: Change | undefined
+        while (change = changes.pop()) {
+            rewriteSection(change!, activeDocument, editBuilder)
+        }
+    })
 }
 
 function checkRanges(changes: Change[], target: vscode.TextDocument) {

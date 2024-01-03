@@ -2,6 +2,8 @@ import { Change } from "../documentaccess/Change"
 import * as settingsAccess from "../settings/settingsAccess"
 import * as regularExpressions from "../regularexpressions/regularExpressionsPicker"
 
+const NBSPNotation = settingsAccess.loadNBSPNotation()
+
 export const exportedForTesting = {
     createCorrectionFromMatch: createChangesFromMatch
 }
@@ -19,8 +21,6 @@ export function createAllCorrections(correctedText: string): Change[] {
     regexps.forEach(regexp => changes.push(...createRegexpChanges(regexp, correctedText, (replaced: string) => replaced.replace(/ /g, NBSPNotation))))
     return changes.sort((change1, change2) => change1[1] - change2[1])
 }
-
-const NBSPNotation = settingsAccess.loadNBSPNotation()
 
 function createRegexpChanges(regexp: RegExp, correctedText: string, replacementGetter: (replaced: string) => string): Change[] {
     const changes: Change[] = []

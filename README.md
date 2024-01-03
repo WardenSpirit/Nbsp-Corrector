@@ -15,7 +15,7 @@ Podporované entity pro nezlomitelné mezery jsou: *\&nbsp;*, *\&#160;*, *\&#xA0
 ## Ovládání
 
 Napíšete text se standardními mezerami bez starostí se zalamováním a následně necháte nezlomitelné mezery vložit automaticky: v otevřeném editoru HTML dokumentu použijte jeden z těchto způsobů:
-- použijte zkratku **ctrl + alt + n** *chord to* **ctrl + alt + b**
+- použijte zkratku "**ctrl + alt + n, ctrl + alt + b**" (tzv. chord)
 - v paletě příkazů (command palette; zkratka **ctrl + shift + P**) a zvolte **```Oprav nezlomitelné mezery```**
 
 Pokud chcete vrátit opravu mezer, funguje klasické undo (**ctrl + z**) 
@@ -31,6 +31,8 @@ V nabídce jsou následující nastavení:
 * `nbspcorrector.pokročilé.*`: Přizpůsobte si jednotlivá typografická pravidla.
 
 ## Známé problémy
+
+Odřádkování mohou způsobit komplikace! Na opravě se pracuje (od 4. ledna).
 
 Implicitní nastavení není dokonalé. Některá pravidla totiž bohužel nelze snadno implementovat tak, aby to vyhovovalo všem textům.
 
@@ -91,5 +93,8 @@ If default behaviour does not suit, it can be customized in settings:
 * `nbspcorrector.pokročilé.*`: Customize behavious related to particular typography rules.
 
 ## Known Issues
+
+
+Line breaks can cause complications! Fix in progress (since 4th January).
 
 The default setting is not perfect. Unluckily, it's not feasible to make it perfect with all the rules Czech language has.

@@ -15,6 +15,7 @@ Zde hledejte popis významných změn tohoto rozšíření.
 - ikona
 - název (*Korektor nezlomitelných mezer v HTML* → *Czech \&nbsp; Corrector*)
 - klíčová slova přesunuta do manifestu
+- aktualizován seznam známých problémů
 
 ## [0.0.5] - 2023-11-15
 

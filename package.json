@@ -51,7 +51,7 @@
     "configuration": {
       "title": "nbspcorrector",
       "properties": {
-        "nbspcorrector.zápisNezlomitelnýchMezer": {
+        "nbspcorrector.nonBreakingSpacesNotation": {
           "order": 0,
           "type": "string",
           "enum": [
@@ -63,13 +63,13 @@
           "default": "&nbsp;",
           "description": "Vyber zápis používaný pro nezlomitelné mezery."
         },
-        "nbspcorrector.přepisPůvodníchNezlomitelnýchMezer": {
+        "nbspcorrector.transcriptionOfOriginalUnbreakableSpaces": {
           "order": 1,
           "type": "boolean",
           "default": true,
           "description": "Opravuj nezlomitelné mezery obsažené v upravovaném textu."
         },
-        "nbspcorrector.pokročilé.zalamováníKolemMatematickýchOperátorů": {
+        "nbspcorrector.pokročilé.wrappingAroundMathematicalOperators": {
           "order": 2,
           "type": "string",
           "enum": [
@@ -82,49 +82,49 @@
             "Nezlomitelné mezery nevkládej za matematickými operátory, vkládej je před ně."
           ]
         },
-        "nbspcorrector.pokročilé.zalamováníPředSpojovníkyAZnakyMinus": {
+        "nbspcorrector.advanced.wrappingBeforeHyphensAndMinusSigns": {
           "order": 3,
           "type": "boolean",
           "default": true,
           "description": "Povolí zalamování před spojovníky a~znaky minus. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
         },
-        "nbspcorrector.pokročilé.zalamováníPředLomítky": {
+        "nbspcorrector.advanced.wrappingBeforeSlashes": {
           "order": 4,
           "type": "boolean",
           "default": true,
           "description": "Povolí zalamování před lomítky. Pokud je `#nbspcorrector.advanced.wrappingAroundMathOperators#` nastaveno na zalamování za matematickými operátory, toto je zapnuté automaticky."
         },
-        "nbspcorrector.pokročilé.opatrnostZaMožnýmiŘímskýmiČísly": {
+        "nbspcorrector.advanced.cautionAfterPotentialRomanNumerals": {
           "order": 5,
           "type": "boolean",
           "default": false,
           "description": "Předložky I/i a V/v považuj za římská čísla, nezlomitelné mezery za nimi nevkládej."
         },
-        "nbspcorrector.pokročilé.validaceKalendářníchDat": {
+        "nbspcorrector.advanced.validationOfCalendarDates": {
           "order": 6,
           "type": "boolean",
           "default": true,
           "description": "Nevkládej nezlomitelné mezery do sekvencí podobných kalendářním datům s podezřele vysokým číslem dne či měsíce."
         },
-        "nbspcorrector.pokročilé.zalamováníMeziMěsícemARokem": {
+        "nbspcorrector.advanced.wrappingBetweenMonthAndYear": {
           "order": 7,
           "type": "boolean",
           "default": false,
           "description": "Povolí zalamování mezi měsícem a rokem v číselných zápisech dat. Jestliže text není zarovnán do bloku, není to vhodné."
         },
-        "nbspcorrector.pokročilé.zalamováníZaTitulyAHodnostmi": {
+        "nbspcorrector.advanced.wrappingAfterTitlesAndRanks": {
           "order": 8,
           "type": "boolean",
           "default": false,
           "description": "Povolí zalamování za tituly/hodnostmi. Zapínej jen pro předcházení false positives."
         },
-        "nbspcorrector.pokročilé.zalamováníVMatematickýchZávorkách": {
+        "nbspcorrector.advanced.wrappingInMathBrackets": {
           "order": 9,
           "type": "boolean",
           "default": false,
           "description": "Povol zalamování matematicky vypadajícího výrazu v závorkách."
         },
-        "nbspcorrector.pokročilé.vlastníRegulárníVýrazy": {
+        "nbspcorrector.advanced.customRegularExpressions": {
           "order": 10,
           "type": "array",
           "default": [],

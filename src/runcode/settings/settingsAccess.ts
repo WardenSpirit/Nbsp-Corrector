@@ -22,7 +22,7 @@ export type ConfigData = {
 
 export function loadRegexpsConfiguration(): ConfigData {
     return {
-        wrapAroundMath: configuration.get('pokročilé.zalamováníKolemMatematickýchOperátorů') ?? DEFAULT_WRAP_AROUND_MATH,
+        wrapAroundMath: configuration.get<string>('pokročilé.zalamováníKolemMatematickýchOperátorů') ?? DEFAULT_WRAP_AROUND_MATH,
         dashes: configuration.get('pokročilé.zalamováníPředSpojovníkyAZnakyMinus') ?? DEFAULT_MINUSES,
         slashes: configuration.get('pokročilé.zalamováníPředLomítky') ?? DEFAULT_SLASHES,
         romanCaution: configuration.get('pokročilé.opatrnostZaMožnýmiŘímskýmiČísly') ?? DEFAULT_ROMAN_CAUTION,

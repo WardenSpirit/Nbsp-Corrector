@@ -4,9 +4,6 @@ import * as documentValidator from "./documentValidator"
 import * as DOMRecurser from "./textExtractor"
 import { createSpaceUnifications, createAllCorrections } from "./correctionCreator"
 import { Change } from "../documentaccess/Change"
-import jsdom = require("jsdom")
-const { JSDOM } = jsdom
-const DOMParser = new JSDOM().window.DOMParser
 
 export async function correctActiveDocument() {
     try {
@@ -31,9 +28,7 @@ function obtainText(): string {
     let HTMLText: string
     HTMLText = documentAccess.read()
 
-    const parsedDocument = new DOMParser().parseFromString(HTMLText, 'text/html')
-
-    if (!documentValidator.canBeCzechValid(parsedDocument)) {
+    if (!documentValidator.canBeCzechValid(HTMLText)) {
         throw new Error(documentValidator.ERROR_MESSAGE)
     }
 
