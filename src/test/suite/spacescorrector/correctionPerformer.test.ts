@@ -6,26 +6,27 @@ const { createCorrectionFromMatch } = exportedForTesting
 
 suite('CorrectionExecution test suite', () => {
     const nbspNotation = settingsAccess.loadNBSPNotation()
-    const replacementGetter = (replaced: string) => replaced.replace(/ /g, nbspNotation);
+    const replacementGetter = (replaced: string) =>
+        replaced.replace(/ /g, nbspNotation)
 
     test('createRegexpCorrections test 1', () => {
-        const correctedString: string = "O výši pokuty se právě jedná."
+        const correctedString: string = "O výši odměny se právě jedná."
         const regexp: RegExp = /(?<=^| )[O] \b/g
-        const createdCorrection = createCorrectionFromMatch(regexp.exec(correctedString)!, regexp, replacementGetter)
+        const createdCorrection = createCorrectionFromMatch(
+            regexp.exec(correctedString)!, regexp, replacementGetter)
         assert.equal(createdCorrection[0], "O" + nbspNotation)
         assert.equal(createdCorrection[1], 0)
         assert.equal(createdCorrection[2], 2)
     })
-
+    
     test('createRegexpCorrections test 2', () => {
-        const correctedString: string = "Přestože o výši pokuty se právě jedná."
+        const correctedString: string = "Přestože o výši odměny se právě jedná."
         const regexp: RegExp = /(?<=^| )[o] \b/g
         const createdCorrection = createCorrectionFromMatch(regexp.exec(correctedString)!, regexp, replacementGetter)
         assert.equal(createdCorrection[0], "o" + nbspNotation)
         assert.equal(createdCorrection[1], 9)
         assert.equal(createdCorrection[2], 11)
     })
-
     test('createRegexpCorrections test 3', () => {
         const correctedString: string = "Výše pokuty může dosáhnout až 1 000 Kč."
         const regexp: RegExp = /\b\d{1,3}(?: \d{2,3})+\b/g
@@ -34,7 +35,6 @@ suite('CorrectionExecution test suite', () => {
         assert.equal(createdCorrection[1], 30)
         assert.equal(createdCorrection[2], 35)
     })
-
     test('createRegexpCorrections test 4', () => {
         const correctedString: string = "Splatnost pokuty je 9. září."
         const regexp: RegExp = /\d+\. ?září/g
