@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import { Change } from "./Change"
+export const exportedForTesting = { rewriteSection: rewriteSection, getActiveEditor: getActiveEditor }
 
 export class NoActiveEditorError extends Error {
     private static readonly MESSAGE = "Aktivní okno editoru nenalezeno!"

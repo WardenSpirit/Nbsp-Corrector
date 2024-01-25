@@ -33,6 +33,7 @@ class Correction implements TextMeaning {
 }
 
 class Tag implements TextMeaning {
+    
     public follow(context: Context, text: string): void {
 
         if (text.substring(context.getIndex(), context.getIndex() + 4) == "<!--") {

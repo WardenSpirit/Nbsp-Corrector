@@ -1,9 +1,11 @@
 import * as assert from 'assert';
 import * as vscode from 'vscode';
-import * as documentAccess from '../../../runcode/documentaccess/documentAccess';
+//import * as documentAccess from '../../../runcode/documentaccess/documentAccess';
+import { read, exportedForTesting } from '../../../runcode/documentaccess/documentAccess';
+const { rewriteSection, getActiveEditor } = exportedForTesting
 import { join } from 'path';
 import { readFileSync, writeFileSync } from 'fs';
-/*
+
 suite('DocumentAccess test suite', () => {
 
     const path = join(__dirname, "temporaryTestFile.html")
@@ -11,24 +13,26 @@ suite('DocumentAccess test suite', () => {
     writeFileSync(path, content, { flag: 'w' })
     const uri = vscode.Uri.file(path)
 
-    test('Read the document test', () => {
+    test('Read the document test', () => {/*
         vscode.workspace.openTextDocument(uri).
             then((document) => {
                 vscode.window.showTextDocument(document)
-                assert.equal(documentAccess.read(), content)
+                assert.equal(read(), content)
             })
-    })
+        */})
 
     const rewrittenContent = "This is the text of the file. It should equal the read value."
 
-    test('Write the document test', () => {
+    test('Write the document test', () => {/*
         vscode.workspace.openTextDocument(uri).
-            then((document) => {
+            then(async (document: vscode.TextDocument) => {
                 vscode.window.showTextDocument(document)
-                documentAccess.rewriteSection("text", 12, 19)
-                assert.equal(documentAccess.read(), rewrittenContent)
+                await getActiveEditor().edit((editor) => {
+                    rewriteSection(["text", 12, 19], document, editor)
+                })
+                assert.equal(read(), rewrittenContent)
             })
-    })
 
-    vscode.commands.executeCommand('workbench.action.closeActiveEditor');
-})*/
+        vscode.commands.executeCommand('workbench.action.closeActiveEditor');*/
+    })
+})

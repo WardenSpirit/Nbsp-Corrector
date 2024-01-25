@@ -5,7 +5,7 @@ import * as regularExpressions from "../regularexpressions/regularExpressionsPic
 const NBSPNotation = settingsAccess.loadNBSPNotation()
 
 export const exportedForTesting = {
-    createCorrectionFromMatch: createChangesFromMatch
+    createCorrectionFromMatch: getChangedTextPart
 }
 
 export function createSpaceUnifications(correctedText: string): Change[] {
@@ -15,27 +15,30 @@ export function createSpaceUnifications(correctedText: string): Change[] {
     return changes
 }
 
-export function createAllCorrections(correctedText: string): Change[] {
-    const changes: Change[] = []
+export function createAllCorrections(textToCorrect: string): Change[] {
+    const corrections: Change[] = []
     const regexps = regularExpressions.loadRegexps()
-    regexps.forEach(regexp => changes.push(...createRegexpChanges(regexp, correctedText, (replaced: string) => replaced.replace(/ /g, NBSPNotation))))
-    return changes.sort((change1, change2) => change1[1] - change2[1])
+    const replacementGetter = (replaced: string) => replaced.replace(/ /g, NBSPNotation)
+    regexps.forEach(regexp => {
+        corrections.push(...createRegexpChanges(regexp, textToCorrect, replacementGetter))
+    })
+    return corrections.sort((change1, change2) => change1[1] - change2[1])
 }
 
-function createRegexpChanges(regexp: RegExp, correctedText: string, replacementGetter: (replaced: string) => string): Change[] {
+function createRegexpChanges(regexp: RegExp, textToCorrect: string, replacementGetter: (replaced: string) => string): Change[] {
     const changes: Change[] = []
     let match
-    while ((match = regexp.exec(correctedText)) !== null) {
-        changes.push(createChangesFromMatch(match, regexp, replacementGetter))
+    while ((match = regexp.exec(textToCorrect)) !== null) {
+        const unchange = getChangedTextPart(match, regexp)
+        changes.push([replacementGetter(unchange[0]), unchange[1], unchange[2]])
         regexp.lastIndex = match.index + 1
     }
     return changes
 }
 
-function createChangesFromMatch(match: RegExpExecArray, regexp: RegExp, replacementGetter: (replaced: string) => string): Change {
+function getChangedTextPart(match: RegExpExecArray, regexp: RegExp): Change {
     const startIndex: number = match.index
     const endIndex: number = regexp.lastIndex
     const replaced: string = match.input.substring(startIndex, endIndex)
-    const replacement: string = replacementGetter(replaced)
-    return [replacement, startIndex, endIndex]
+    return [replaced, startIndex, endIndex]
 }
