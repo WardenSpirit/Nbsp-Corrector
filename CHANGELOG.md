@@ -1,8 +1,18 @@
 # Change Log
 
-Zde hledejte popis významných změn tohoto rozšíření.
+Zde hledejte techničtější popis změn tohoto rozšíření.
 
-(Používán formát z [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).)
+## [0.1.3] - 2024-01-25
+
+### Change
+
+- přidán záznam v readme a changelogu
+
+## [0.1.2] - 2024-01-25
+
+### Fixed
+
+- oprava chybných indexů kvůli odřádkováním a zbytku algoritmu pracujícím s odstaveným DOMParserem v souvislosti se čtením textů v dokumentu
 
 ## [0.1.1] - 2023-11-21
 
@@ -63,3 +73,8 @@ Zde hledejte popis významných změn tohoto rozšíření.
 
 - Oprava mezer pomocí příkazu
 - Oprava mezer pomocí klávesové zkratky (ctrl + alt + n + b)
+
+
+## Poděkování
+
+- Používán formát z [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). Thanks for inspiration!

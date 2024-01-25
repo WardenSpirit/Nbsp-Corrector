@@ -2,7 +2,7 @@
 
 *(English version follows)*
 
-Entity pro nezlomitelné mezery (např. \&nbsp) se skládají nejméně z 5 znaků. Psaní nezlomitelných mezer tak stojí zbytečně mnoho času. Nástroj, který to dělá automaticky, tento čas ušetří. Tady je.
+V HTML se entity pro nezlomitelné mezery (např. *\&nbsp*) skládají nejméně z 5 znaků. Psaní nezlomitelných mezer proto stojí zbytečně mnoho času. Nástroj, který to dělá automaticky, tento čas ušetří. Tady je.
 
 ## Funkce
 
@@ -15,7 +15,7 @@ Podporované entity pro nezlomitelné mezery jsou: *\&nbsp;*, *\&#160;*, *\&#xA0
 ## Ovládání
 
 Napíšete text se standardními mezerami bez starostí se zalamováním a následně necháte nezlomitelné mezery vložit automaticky: v otevřeném editoru HTML dokumentu použijte jeden z těchto způsobů:
-- použijte zkratku "**ctrl + alt + n, ctrl + alt + b**" (tzv. chord)
+- použijte zkratku "**ctrl + alt + n, ctrl + alt + b**" (tzv. chord, akord)
 - v paletě příkazů (command palette; zkratka **ctrl + shift + P**) a zvolte **```Oprav nezlomitelné mezery```**
 
 Pokud chcete vrátit opravu mezer, funguje klasické undo (**ctrl + z**) 
@@ -32,13 +32,15 @@ V nabídce jsou následující nastavení:
 
 ## Známé problémy
 
-Odřádkování mohou způsobit komplikace! Na opravě se pracuje (od 4. ledna).
-
 Implicitní nastavení není dokonalé. Některá pravidla totiž bohužel nelze snadno implementovat tak, aby to vyhovovalo všem textům.
 
 ## Poznámky k verzím
 
 Nová vydání budou následovat podle požadavků uživatelů.
+
+### 0.1.2-0.1.3
+
+Oprava vložení nezlomitelných mezer na nesprávná místa uvnitř značek po odřádkování.
 
 ### 0.1.0-0.1.1
 
