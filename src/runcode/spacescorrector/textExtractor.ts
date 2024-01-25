@@ -2,7 +2,7 @@ import { Context } from "./textMeaning"
 
 export function extractTexts(HTMLText: string): [textPart: string, offset: number][] {
 
-  const bodyOffset = getOffsetOfBody(HTMLText) //noCarriageReturnText)
+  const bodyOffset = getOffsetOfBody(HTMLText)
   const textParts: [textPart: string, offset: number][] = findTextParts(HTMLText, bodyOffset)
 
   return textParts
